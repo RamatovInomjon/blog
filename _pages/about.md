@@ -1,6 +1,6 @@
 ---
 title: "About"
-permalink: /inomjonCV/
+permalink: "/inomjonCV/"
   excerpt: "All about me."
 
 ---
