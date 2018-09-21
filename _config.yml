@@ -20,9 +20,9 @@ title                    : "Machine learning"
 title_separator          : "-"
 name                     : "Inomjon Ramatov"
 description              : "Machine learning, Computer Vision, Deep learning, and Python Portfolio"
-url                      : "https://inomjonramatov.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "/blog" # the subpath of your site, e.g. "/blog"
-repository               : "RamatovInomjon/inomjonramatov.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+url                      : #"https://inomjonramatov.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+baseurl                  : #"/blog" # the subpath of your site, e.g. "/blog"
+repository               : #"RamatovInomjon/inomjonramatov.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -113,7 +113,7 @@ author:
   flickr           :
   facebook         : "inomjon.ramatov"
   foursquare       :
-  github           :  "InomjonRamatov"
+  github           :  "RamatovInomjon"
   gitlab           :
   google_plus      :
   keybase          :

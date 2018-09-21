@@ -2,7 +2,7 @@
 
 layout: archive
 permalink: "/machine-learning/"
-title: "Machine Learning posts"
+title: "Machine Learning darslari"
 author_profile: true
 
 ---
