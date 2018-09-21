@@ -1,7 +1,7 @@
 ---
 title: "About"
 permalink: "/inomjonCV/"
-  excerpt: "All about me."
+author_profile: true
 
 ---
 
