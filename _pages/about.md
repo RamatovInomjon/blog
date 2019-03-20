@@ -1,6 +1,6 @@
 ---
 title: "About"
-permalink: "/inomjonCV/"
+permalink: "/me/"
 author_profile: true
 
 ---
