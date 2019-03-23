@@ -1,124 +1,18 @@
 ---
-title: "About"
+title: ""
 permalink: "/me/"
 author_profile: true
 
 ---
+### Inomjon Ramatov (March 23, 2019)
 
+  <p style="text-align: left">
 
-### Inomjon Ramatov(Curriculum Vitae, September 20, 2018)
+Inomjon Ramatov, Co-founder of educational center [Light Education](http://lighteducation.uz/) and A.I. engineer at Wuhan [SimShine](http://simcam.ai/) Intelligent technology Co., Ltd, and this is a bit of copy about him. When he was learning counting numbers, he fell in love with math. He was the best at physics in the Samarkand province among the peers during his middle and high school period. You can ask why not at math? There was Zarif, one of his good friends. He gave chance to his friend, using this opportunity Zarif won bronze medal in International Mathematical Olympics. Actually, it is not the real reason for choosing physics, he chose it because in his village power failure was very often and he wanted and dreamed invent “infinite energy source”. Unfortunately, after coming to study in high school in Samarkand city, he forgot about those dreams, because there were always electricity.  He used to teach math and physics during his high school period for juniors, and even for senior students of his high school.  Most of those students entered to study in high-level universities of Russia and Uzbekistan.  Native Uzbek, but he can speak simple Chinese, Russian, English, Uyghur languages, can write and read in Arabic. He can speak Tajik, Kazakh, Kirghiz and Turkish languages, too but he prefer to keep it secret. In 2012, he graduated from high school with honors and applied for 3 universities at once, they are Tyumen State Oil and Gas University (in Russia, he passed exam and won scholarship), Gubkin Oil and Gas University Tashkent branch (in Uzbekistan, he failed exam) and  Tashkent University of Information Technology Samarkand branch(in Uzbekistan, he passed exam and won scholarship). And he chose study in Uzbekistan, because his friends scared him by saying “Russians are very rude and don’t respect foreigners ”, (it might be funny reason, but he likes being respectful all the time, that’s why he is in China now, Chinese people respect and like foreigners). However, he studied in international group of university, main difference between international and national group was teaching language, in international group teaching language was Russian language and there were many kind of nationality students such as Koreans, Tajiks, Tatars, Iranians and sure Uzbeks. While in the university,   he participated 2 times in ACM International Collegiate Programming Contest, NEERC, but never passed for final because the "weather condition" was not convenient during the competition day for him and his team and they failed to solve some problems of contest (at least it is his opinion). By the way, ACM International Collegiate Programming Contest is known as the ICPC, an annual multi-tiered competitive programming competition among the universities of the world. NEERC, the Northern Eurasia Finals, is the contest for Northern Eurasia teams with best teams qualifying for World Finals of ICPC. (Sounds amazing, right?). He is a fan of Bruce Lee, Jackie Chan and Lee Byung-hun.  If someone makes complement by saying "you look like Lee Byung-hun or Bruce Lee", you can see his all teeth because of his happiness.  When you ask him "what's your hobby Inomjon?' probably he replies "reading books"([here](/books) you can find his lovely ten books). Actually, his hobby is playing guitar. Ok, Ok, I know, it is not true, he cannot play guitar at all! However, he is good at sleeping; he can do it with closed eyes.   He can sing a song and dance (Note* only if only he is drunk!).  His favorite thing is talking with his parents on the phone for hours. The reason,  he is living far from his family almost for ten years because of studying.  He loves small babies; he thinks they smell with smell of heaven. He dislikes the word "No" and reject others.  As Fabiao said (his Brazilian friend), he always replies with "yeah, yeah". Are you still reading? Really? it seems he is a good writer, too. He never thought he would write this kind of bio about himself someday. He is inspired by reading Zohid’s amazingly interesting biography, he could share it with you but it is written in Uzbek language so you might not understand.  While on subject, Zohid works as a project manager at [OOO Agata Impex](http://agatagroup.uz/), he is a salesman, writer, generous, creative, conversationalist person, but most import, he is Inomjon's one of the best friends and source of motivation.   As you know while reading this bio, Inomjon also likes boasting himself. Anyway, he is a quick learner, he was less than zero (as Mr. Zhan Wei laoshi said) within a year, he became an AI engineer because of support and guidance Mr. Zhan Wei, help of many Chinese friends in his office and of course working and studying hard on himself . He really respects his teacher Mr. Zhan Wei. Mr. Zhan Wei is one the most respectful teachers of Yangtze University, I cannot describe his kindness and generosity with words; he always cares about his students and helps them as much as possible. One of his best student Liu HaiDong is Inomjon’s good friend; he is outgoing and helpful boy. In Inomjon’s opinion, he will become a good manager of big IT Company in the future.
+Whew, it is difficult writing about myself being third person, hahaha. As Bruce lee said, “Honestly expressing yourself, not lying oneself, it is very difficult to do, my friend”. I wrote this for fun, some of stories are over boasted, but all based on real life of me. I appreciate all your opinions about it. I remember when I was kid I wrote a poem, but criticized by parents and teachers and never tried more. If it happens again, more likely, I will never write similar to this. Thanks for your time and passion! Sincerely Inomjon.
 
-#### Brief Bio <br>
+  </p>
 
- <p style="text-align: justify">Inomjon Ramatov earned his Bachelor degrees in computer science from Samarkand Branch of Tashkent University of Information Technologies (Uzbekistan, Samarkand) in July 2016. Currently, he is a Master student in School of Computer Science, Yangtze University, Jingzhou, Hubei, China. His main research interests focus on: Computer vision via Deep Learning algorithms.<br>
- His objective is utilize his skills in problem solving, Machine Learning,Computer Vision, and Deep Learning. </p>
+  Certificate of achievement:
 
-
-#### Education
-* <p style="text-align: left">Yangtze University  </p>
-   <i>Master degree. Computer Science. </i>
-   - Advisors: Prof. Qin Han, Dr. Wei Zhan
-   -  Research on: Object detection from the video taken by drone via Convolutional neural networks
-   - Emphasis: Computer Vision, Object Detection, Digital Image processing and recognition, Convolutional Neural Networks.
-
-  <div style="text-align: right">
-  Hubei, Jingzhou, China
-  <br> Sep.2016, Expected July.2019
-  </div>
-
-*  <p style="text-align: left">Samarkand Branch of Tashkent University of Information Technologies </p>
-     <i>Bachelor degree., Computer science and IT </i>
-     - Advisors: As. Prof. Muradov Farrukh, Shekhroz Khudayarov
-     -  Final Qualifying Work: Creating software for mobile phones teaching physics educational(in English)
-     - Emphasis: Java programming and Working on Android Studio
-     - Graduated with Honors
-     <div style="text-align: right"> Uzbekistan, Samarkand </div>
-     <div style="text-align: right"> Sep.2012-July.2016 </div>
-
-
-#### Research Interests
-* Computer Vision for big Image Data via Deep Learning Algorithm;
-* Android Application Development using Java programming language.
-
-#### Programming Languages
-Worked in
-* Python
-* Java
-* C++
-* Django, python based framework
-* HTML and CSS
-
-#### Software Tools
-* Android Studio;
-* Anaconda;
-* CodeBlocks;
-* Eclipse;
-* MS Visual Studio;
-* PyCharm
-* RAD Studio
-
-#### Operating System Platforms
-* Microsoft Windows (all releases);
-* UNIX
-
-#### Personal Skills
-* Quick Learner;
-* Working in a team;
-* Communication Skills.
-
-#### Languages
-
-* English;
-* Russian;
-* basic Chinese;
-* native Uzbek.
-
-#### Activities and Interests
-* Participated in ACM International Collegiate Programming Contest 2013-2014, NEERC;
-* Participated in ACM International Collegiate Programming Contest 2015-2016, NEERC;
-* Playing Football and Chess.
-
-## The Research and It’s Application
-**Object detection from the video taken by drone via Convolutional neural network**
-
-<div style="text-align:justify"> The aim of this research is to show the implementation of object detection on drone videos using TensorFlow object detection API. The functional problem of the research is the identiﬁcation of people, trees, cars and buildings from the real-world video frames taken by drones. In the research explored how state-of-the-art object detection algorithms perform on image data from a drone. </div>
-
-[Experiment result on YouTube](https://www.youtube.com/watch?v=Ym5aURaypu0&feature=youtu.be "Object detection from the video taken by drone via Convolutional neural network")
-
-![alt text](../images/experiment1.jpg "Experiment result")
-
-![alt text](../images/experiment2.jpg "Experiment result")
-
-## Experiments:
-**Image classification via CNN.**
-
-Aim of this experiment was learn Keras-high level Neural Network library and Transfer learning.
-
-![alt text](../images/experiment3.jpg "Experiment result")
-
-**Real time face detection and face recognition using FaceNet- deep CNN.**
-
-Aim of this experiment was learn Face detection and recognition using deep convolutional neural networks.
-
-![alt text](../images/experiment5.jpg "Experiment result")
-
-![alt text](../images/experiment6.jpg "Experiment result")
-
-![alt text](../images/experiment7.png "Experiment result")
-
-![alt text](../images/experiment8.png "Experiment result")
-
-## Courseworks:
-
-**Data Mining Course project :King-Rook versus King Chess Endgame Database.**
-
- <div style="text-align:justify"> Basing our analysis on interesting works using KRK patterns, we have developed a knowledge consisting in 16 attributes. Thus we were able to transform the primary database in a bunch of new ones by using different attribute sets. Thanks to Data Mining decision trees, we could then save the new databases very optimally, obtaining in the best case a compression 3 times better than standard compression methods.</div>
-
- ![alt text](../images/experiment9.jpg "Experiment result")
- ![alt text](../images/experiment10.jpg "Experiment result")
-
-## Android Applications
-
-Link to all applications on Google play store: [here](https://play.google.com/store/apps/developer?id=Inomjon)
-
-![alt text](../images/apps.jpg "Android applications")
+![award img](../images/award.jpg "NEERC participant achievement")
