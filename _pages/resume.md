@@ -5,12 +5,13 @@ author_profile: true
 
 ---
 
-### Inomjon Ramatov(Curriculum Vitae, September 20, 2018)
+### Inomjon Ramatov(Curriculum Vitae, May 8, 2021)
 
 #### Brief Bio <br>
 
- <p style="text-align: justify">Inomjon Ramatov earned his Bachelor degrees in computer science from Samarkand Branch of Tashkent University of Information Technologies (Uzbekistan, Samarkand) in July 2016. Currently, he is a Master student in School of Computer Science, Yangtze University, Jingzhou, Hubei, China. His main research interests focus on: Computer vision via Deep Learning algorithms.<br>
- His objective is utilize his skills in problem solving, Machine Learning,Computer Vision, and Deep Learning. </p>
+ <p style="text-align: justify">Inomjon Ramatov earned his Bachelor degrees in Computer science and IT from Samarkand Branch of Tashkent University of Information Technologies in June 2016, and his Master degrees in Computer Technology at Yangtze University in June 2019.
+During the study, he interned at Simcam Co Ltd (Wuhan, China) from 2018.10 to 2019.04. In the internship period, he helped to develop open SDK of the simcam AI featured cameras. (https://github.com/simshineaicamera/SIMCAM_SDK). His main research interests were focused on Computer vision via deep learning algorithms. After graduation, Simcam team offered him AI algorithm engineer position. His duty is develop computer vision solutions, gain experience with deep learning. Currently, he is a Co-Founder and Lead AI engineer at Tass-Vision Co.Ltd <br>
+His objective is utilize his skills in problem solving, Machine Learning,Computer Vision, and Deep Learning. </p>
 
 
 #### Education
@@ -22,7 +23,7 @@ author_profile: true
 
   <div style="text-align: right">
   Hubei, Jingzhou, China
-  <br> Sep.2016, Expected July.2019
+  <br> Sep.2016-July.2019
   </div>
 
 *  <p style="text-align: left">Samarkand Branch of Tashkent University of Information Technologies </p>
@@ -37,28 +38,26 @@ author_profile: true
 
 #### Research Interests
 * Computer Vision for big Image Data via Deep Learning Algorithm;
-* Android Application Development using Java programming language.
+
+#### Deep learning frameworks
+Worked in
+* Caffe;
+* Pytorch;
+* MXNet
+* Tensorflow with Keras;
 
 #### Programming Languages
 Worked in
 * Python
-* Java
 * C++
-* Django, python based framework
-* HTML and CSS
 
 #### Software Tools
-* Android Studio;
 * Anaconda;
-* CodeBlocks;
-* Eclipse;
 * MS Visual Studio;
-* PyCharm
-* RAD Studio
 
 #### Operating System Platforms
 * Microsoft Windows (all releases);
-* UNIX
+* Ubuntu
 
 #### Personal Skills
 * Quick Learner;
@@ -77,47 +76,13 @@ Worked in
 * Participated in ACM International Collegiate Programming Contest 2015-2016, NEERC;
 * Playing Football and Chess.
 
-## The Research and It’s Application
-**Object detection from the video taken by drone via Convolutional neural network**
+## The Research and It’s Applications
 
-<div style="text-align:justify"> The aim of this research is to show the implementation of object detection on drone videos using TensorFlow object detection API. The functional problem of the research is the identiﬁcation of people, trees, cars and buildings from the real-world video frames taken by drones. In the research explored how state-of-the-art object detection algorithms perform on image data from a drone. </div>
+### Coming soon...
 
-[Experiment result on YouTube](https://www.youtube.com/watch?v=Ym5aURaypu0&feature=youtu.be "Object detection from the video taken by drone via Convolutional neural network")
-
-![alt text](../images/experiment1.jpg "Experiment result")
-
-![alt text](../images/experiment2.jpg "Experiment result")
-
-## Experiments:
-**Image classification via CNN.**
-
-Aim of this experiment was learn Keras-high level Neural Network library and Transfer learning.
-
-![alt text](../images/experiment3.jpg "Experiment result")
-
-**Real time face detection and face recognition using FaceNet- deep CNN.**
-
-Aim of this experiment was learn Face detection and recognition using deep convolutional neural networks.
-
-![alt text](../images/experiment5.jpg "Experiment result")
-
-![alt text](../images/experiment6.jpg "Experiment result")
-
-![alt text](../images/experiment7.png "Experiment result")
-
-![alt text](../images/experiment8.png "Experiment result")
-
-## Courseworks:
-
-**Data Mining Course project :King-Rook versus King Chess Endgame Database.**
-
- <div style="text-align:justify"> Basing our analysis on interesting works using KRK patterns, we have developed a knowledge consisting in 16 attributes. Thus we were able to transform the primary database in a bunch of new ones by using different attribute sets. Thanks to Data Mining decision trees, we could then save the new databases very optimally, obtaining in the best case a compression 3 times better than standard compression methods.</div>
-
- ![alt text](../images/experiment9.jpg "Experiment result")
- ![alt text](../images/experiment10.jpg "Experiment result")
 
 ## Android Applications
 
 Link to all applications on Google play store: [here](https://play.google.com/store/apps/developer?id=Inomjon)
 
-![alt text](../images/apps.jpg "Android applications")
+![alt text](../images/apps.png "Android applications")
