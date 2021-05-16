@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "contrast" #" default"  "air", "aqua", "contrast", "d
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Machine learning"
+title                    : "Inomjon's blog"
 title_separator          : "-"
 name                     : "Inomjon Ramatov"
 description              : "Machine learning, Computer Vision, Deep learning, and Python Portfolio"
