@@ -1,7 +1,7 @@
 ---
 
 layout: archive
-permalink: "/machine-learning/"
+permalink: "/machine-learning/tutorial"
 title: "Machine Learning darslari"
 author_profile: true
 
