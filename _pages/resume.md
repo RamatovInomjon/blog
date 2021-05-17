@@ -85,4 +85,4 @@ Worked in
 
 Link to all applications on Google play store: [here](https://play.google.com/store/apps/developer?id=Inomjon)
 
-![alt text](../images/apps.png "Android applications")
+![alt text](http://inomjonramatov.uz/images/apps.png "Android applications")

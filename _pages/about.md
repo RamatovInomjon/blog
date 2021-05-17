@@ -23,4 +23,4 @@ Sincerely Inomjon.
 
 Certificate of achievement:
 
-![award img](../images/award.jpg "NEERC participant achievement")
+![award img](http://inomjonramatov.uz/images/award.jpg "NEERC participant achievement")
