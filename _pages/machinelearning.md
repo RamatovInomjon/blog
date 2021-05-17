@@ -8,7 +8,7 @@ author_profile: true
 ---
 
 
-<!-- {% include base_path %}
+{% include base_path %}
 {% include group-by-array collection=site.posts field="tags" %}
 
 {% for tag in group_names %}
@@ -17,11 +17,7 @@ author_profile: true
   {% for post in posts %}
     {% include archive-single.html %}
   {% endfor %}
-{% endfor %} -->
-{% include base_path %}
-
-{% for post in site.posts %}
-  {% if post.categories contains 'Tutorial' %}
-    {% include archive-single.html %}
-  {% endif %}
 {% endfor %}
+
+
+
