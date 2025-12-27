@@ -2,7 +2,9 @@
 title: "Computer vision, mashinalarga ko‘rishni o‘rgatish haqida."
 author: "Inomjon Ramatov"
 date: 2025-12-27
-tags: [computer-vision, AI, machine-learning, ko‘rish, texnologiya]
+tags: [computer-vision, AI, machine-learning, ko‘rish, texnologiya, fundamentals]
+site_url: https://inomjonramatov.uz/
+excerpt: "Kompyuterga ko‘rishni o‘rgatish, unga fikrlashni o‘rgatishda birinchi qadamdir. "
 ---
 
 # Vision
