@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Modern skin
+   --------------------------------------------------------------------------
+   These are the *build-time* SCSS colours the whole theme compiles against,
+   so they describe the LIGHT theme. They cannot be CSS custom properties:
+   the theme runs `mix()`, `lighten()` and the YIQ contrast functions over
+   several of them, and those need real colour values at compile time.
+
+   The runtime light/dark switch lives in `_sass/custom/_tokens.scss` and
+   `_sass/custom/_modern.scss`, which re-declare the visible surfaces using
+   var(--…) so the palette can be flipped in the browser.
+   ========================================================================== */
+
+/* Colors */
+$background-color: #ffffff !default;
+$text-color: #1f2430 !default;
+$muted-text-color: #5c6575 !default;
+$primary-color: #4f46e5 !default;
+$border-color: #e3e6ec !default;
+$form-background-color: #f7f8fa !default;
+$footer-background-color: #f7f8fa !default;
+
+$link-color: #4f46e5 !default;
+$link-color-hover: #3730a3 !default;
+$link-color-visited: #6d64ea !default;
+
+$masthead-link-color: $text-color !default;
+$masthead-link-color-hover: $primary-color !default;
+$navicon-link-color-hover: mix(#fff, $text-color, 80%) !default;
+
+/* Code blocks stay dark in both themes — easier to read and one less
+   surface to repaint on theme switch. */
+$code-background-color: #f3f4f8 !default;
+$code-background-color-dark: #e8eaf0 !default;
+
+/* Status colours, tuned to sit next to the indigo accent */
+$success-color: #16a34a !default;
+$warning-color: #d97706 !default;
+$danger-color: #dc2626 !default;
+$info-color: #0891b2 !default;
+
+/* syntax highlighting (base16) — "one dark" flavoured */
+$base00: #1b1f27 !default; // background
+$base01: #22272f !default;
+$base02: #2f3540 !default;
+$base03: #6b7484 !default; // comments
+$base04: #98a0ae !default;
+$base05: #dfe3ea !default; // default text
+$base06: #eef1f6 !default;
+$base07: #ffffff !default;
+$base08: #e06c75 !default; // variables, tags
+$base09: #d19a66 !default; // numbers, constants
+$base0a: #e5c07b !default; // classes
+$base0b: #98c379 !default; // strings
+$base0c: #56b6c2 !default; // support
+$base0d: #61afef !default; // functions
+$base0e: #c678dd !default; // keywords
+$base0f: #be5046 !default; // deprecated

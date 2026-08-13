@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="uz" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog admin</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%234f46e5'/><path d='M20 44V20h6.4l5.6 9.8L37.6 20H44v24h-6.2V30.6L32.7 40h-1.4l-5.1-9.4V44z' fill='white'/></svg>">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand__mark">M</span>
+    <span>Blog admin</span>
+  </div>
+
+  <div class="topbar__status" id="gitStatus">
+    <span class="chip" id="branchChip">…</span>
+    <span class="chip chip--muted" id="changesChip">o'zgarishlar yo'q</span>
+  </div>
+
+  <div class="topbar__actions">
+    <button class="btn btn--ghost" id="themeBtn" type="button" title="Mavzu">◐</button>
+    <button class="btn btn--ghost" id="newBtn" type="button">+ Yangi post</button>
+    <button class="btn" id="saveBtn" type="button">Saqlash <kbd>⌘S</kbd></button>
+    <button class="btn btn--primary" id="publishBtn" type="button">Publish</button>
+  </div>
+</header>
+
+<main class="shell">
+
+  <!-- ─────────────── Sidebar: post list ─────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__search">
+      <input type="search" id="filterInput" placeholder="Postlarni qidirish…" autocomplete="off">
+    </div>
+    <div class="sidebar__tabs">
+      <button class="tab is-active" data-filter="all" type="button">Hammasi</button>
+      <button class="tab" data-filter="draft" type="button">Qoralama</button>
+      <button class="tab" data-filter="published" type="button">Chop etilgan</button>
+    </div>
+    <ul class="postlist" id="postList"></ul>
+  </aside>
+
+  <!-- ─────────────── Editor ─────────────── -->
+  <section class="editor">
+
+    <div class="meta">
+      <div class="meta__row">
+        <label class="field field--grow">
+          <span>Sarlavha</span>
+          <input type="text" id="titleInput" placeholder="Post sarlavhasi" autocomplete="off">
+        </label>
+        <label class="field field--date">
+          <span>Sana</span>
+          <input type="date" id="dateInput">
+        </label>
+      </div>
+
+      <div class="meta__row">
+        <label class="field field--grow">
+          <span>URL (slug)</span>
+          <input type="text" id="slugInput" placeholder="avtomatik" autocomplete="off">
+        </label>
+        <label class="field field--check">
+          <input type="checkbox" id="mathjaxInput">
+          <span>MathJax (formulalar)</span>
+        </label>
+      </div>
+
+      <div class="meta__row">
+        <div class="field field--grow">
+          <span>Kategoriyalar</span>
+          <div class="tokens" id="catTokens" data-placeholder="Tutorial…"></div>
+        </div>
+        <div class="field field--grow">
+          <span>Teglar</span>
+          <div class="tokens" id="tagTokens" data-placeholder="computer vision…"></div>
+        </div>
+      </div>
+
+      <div class="meta__row">
+        <label class="field field--grow">
+          <span>Excerpt (qisqacha tavsif — Google va kartochkalarda ko'rinadi)</span>
+          <textarea id="excerptInput" rows="2" placeholder="1–2 gap…"></textarea>
+        </label>
+      </div>
+
+      <div class="meta__row">
+        <label class="field field--grow">
+          <span>Teaser rasm (ixtiyoriy)</span>
+          <input type="text" id="teaserInput" placeholder="/images/example.jpg" autocomplete="off">
+        </label>
+      </div>
+
+      <button class="meta__toggle" id="metaToggle" type="button">Ma'lumotlarni yashirish ▲</button>
+    </div>
+
+    <div class="toolbar" id="toolbar">
+      <button type="button" data-md="bold"   title="Qalin (⌘B)"><b>B</b></button>
+      <button type="button" data-md="italic" title="Kursiv (⌘I)"><i>I</i></button>
+      <span class="toolbar__sep"></span>
+      <button type="button" data-md="h2" title="Sarlavha 2">H2</button>
+      <button type="button" data-md="h3" title="Sarlavha 3">H3</button>
+      <span class="toolbar__sep"></span>
+      <button type="button" data-md="link"  title="Havola (⌘K)">🔗</button>
+      <button type="button" data-md="code"  title="Kod bloki">&lt;/&gt;</button>
+      <button type="button" data-md="quote" title="Iqtibos">❝</button>
+      <button type="button" data-md="ul"    title="Ro'yxat">•</button>
+      <button type="button" data-md="ol"    title="Raqamli ro'yxat">1.</button>
+      <button type="button" data-md="table" title="Jadval">▦</button>
+      <span class="toolbar__sep"></span>
+      <button type="button" id="imageBtn" title="Rasm yuklash">🖼 Rasm</button>
+      <input type="file" id="imageInput" accept="image/*" multiple hidden>
+
+      <div class="toolbar__right">
+        <span class="counter" id="counter">0 so'z</span>
+        <div class="viewswitch">
+          <button type="button" data-view="write"   class="is-active">Yozish</button>
+          <button type="button" data-view="split">Split</button>
+          <button type="button" data-view="preview">Ko'rish</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panes" id="panes" data-view="write">
+      <div class="pane pane--write">
+        <textarea id="bodyInput" spellcheck="false"
+          placeholder="Markdown bilan yozing…&#10;&#10;Rasmni shu yerga tashlab (drag & drop) yuklashingiz mumkin."></textarea>
+        <div class="dropzone" id="dropzone"><span>Rasmni yuklash uchun tashlang</span></div>
+      </div>
+      <div class="pane pane--preview">
+        <article class="preview" id="preview"></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" hidden></div>
+
+<!-- Publish dialog -->
+<div class="modal" id="publishModal" hidden>
+  <div class="modal__box">
+    <h2>Publish qilish</h2>
+    <p class="modal__hint">O'zgarishlar commit qilinadi va GitHub'ga push qilinadi.
+      GitHub Actions saytni avtomatik qayta quradi.</p>
+    <ul class="modal__files" id="publishFiles"></ul>
+    <label class="field">
+      <span>Commit xabari</span>
+      <input type="text" id="commitMessage" placeholder="New post: …">
+    </label>
+    <label class="field field--check">
+      <input type="checkbox" id="pushCheck" checked>
+      <span>GitHub'ga push qilish</span>
+    </label>
+    <div class="modal__actions">
+      <button class="btn btn--ghost" id="publishCancel" type="button">Bekor qilish</button>
+      <button class="btn btn--primary" id="publishConfirm" type="button">Commit &amp; push</button>
+    </div>
+  </div>
+</div>
+
+<script src="/md.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

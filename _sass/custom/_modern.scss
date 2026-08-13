@@ -1,0 +1,1108 @@
+/* ==========================================================================
+   Modern layer
+   --------------------------------------------------------------------------
+   Imported *after* the Minimal Mistakes partials, so plain source order is
+   enough to win — the selectors below deliberately mirror the theme's own
+   rather than piling on !important.
+
+   Everything colour-bearing reads from the tokens in `_tokens.scss`, which is
+   what makes the runtime dark-mode switch repaint the whole page.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Foundations
+   -------------------------------------------------------------------------- */
+
+$font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, sans-serif;
+$font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono",
+  Menlo, monospace;
+
+html {
+  scroll-behavior: smooth;
+  /* Anchor links land below the sticky masthead instead of under it. */
+  scroll-padding-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: $font-sans;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+/* Inter's optical sizing when the variable font is available. */
+@supports (font-variation-settings: normal) {
+  body {
+    font-optical-sizing: auto;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.page__title,
+.archive__item-title,
+.archive__subtitle {
+  font-family: $font-sans;
+  color: var(--text);
+  letter-spacing: -0.021em;
+  font-weight: 650;
+  text-wrap: balance;
+}
+
+a {
+  color: var(--accent);
+  transition: color 0.15s var(--ease);
+
+  &:hover,
+  &:focus {
+    color: var(--accent-hover);
+  }
+
+  &:visited {
+    color: var(--accent);
+  }
+}
+
+/* A single visible focus treatment for every interactive element. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5em 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Masthead — sticky, translucent
+   -------------------------------------------------------------------------- */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--masthead-bg);
+  border-bottom: 1px solid var(--border);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+/* Fallback for browsers without backdrop-filter: use an opaque bar so the
+   nav never becomes unreadable over scrolling content. */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .masthead {
+    background-color: var(--bg);
+  }
+}
+
+.masthead__inner-wrap {
+  padding: 0.75em 1em;
+}
+
+.greedy-nav {
+  background: transparent;
+
+  a {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .site-title {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  /* Replace the theme's hard underline with an animated one. */
+  .visible-links a::before,
+  .hidden-links a::before {
+    background: var(--accent);
+    height: 2px;
+    border-radius: 2px;
+  }
+
+  .visible-links a:hover::before {
+    width: 100%;
+  }
+
+  /* The theme paints the hamburger as white bars on a $primary-color block.
+     Now that the button is transparent, the bars have to follow currentColor
+     or they vanish against a light masthead. */
+  &__toggle {
+    color: var(--text);
+    background-color: transparent;
+    border-radius: var(--radius-sm);
+    padding: 0 0.4rem;
+    transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+
+    &:hover {
+      background-color: var(--surface-hover);
+      color: var(--accent);
+    }
+  }
+
+  .hidden-links {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+
+    a {
+      color: var(--text);
+
+      &:hover {
+        color: var(--accent);
+        background: var(--surface-hover);
+      }
+    }
+
+    &::before {
+      border-bottom-color: var(--border);
+    }
+
+    &::after {
+      border-bottom-color: var(--bg-elevated);
+    }
+  }
+}
+
+/* Theme toggle + search live in the masthead as matching icon buttons. */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+
+  &:hover {
+    background: var(--surface-hover);
+    color: var(--accent);
+  }
+
+  svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Show the icon for the theme you'd switch *to*. */
+  .icon-sun {
+    display: none;
+  }
+}
+
+:root[data-theme="dark"] .theme-toggle {
+  .icon-sun {
+    display: block;
+  }
+
+  .icon-moon {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle {
+    .icon-sun {
+      display: block;
+    }
+
+    .icon-moon {
+      display: none;
+    }
+  }
+}
+
+/* Keep the "close" X transform working: `.close .navicon` is more specific
+   than these, so the theme still wins when the menu is open. */
+.navicon,
+.navicon::before,
+.navicon::after {
+  background: currentColor;
+}
+
+.search__toggle {
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+
+  &:hover {
+    background: var(--surface-hover);
+    color: var(--accent);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Reading progress bar
+   -------------------------------------------------------------------------- */
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  z-index: 200;
+  background: transparent;
+  pointer-events: none;
+
+  &__bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent), var(--info));
+    transform-origin: left center;
+    transition: width 0.08s linear;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Page + article content
+   -------------------------------------------------------------------------- */
+
+.page__title {
+  font-size: clamp(1.9rem, 1.3rem + 2.4vw, 2.85rem);
+  line-height: 1.15;
+  margin-bottom: 0.35em;
+  border-bottom: 0;
+}
+
+.page__meta,
+.page__date {
+  color: var(--text-muted);
+  font-size: 0.8em;
+}
+
+.page__content {
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.75;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 2em 0 0.6em;
+    line-height: 1.3;
+    border-bottom: 0;
+    scroll-margin-top: 5.5rem;
+  }
+
+  h2 {
+    font-size: 1.55em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3 {
+    font-size: 1.28em;
+  }
+
+  h4 {
+    font-size: 1.1em;
+  }
+
+  p {
+    margin: 0 0 1.3em;
+  }
+
+  /* Keep prose at a comfortable measure without constraining media. */
+  > p,
+  > ul,
+  > ol,
+  > blockquote {
+    max-width: 46rem;
+  }
+
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: var(--accent-soft);
+    transition: text-decoration-color 0.15s var(--ease), color 0.15s var(--ease);
+
+    &:hover {
+      text-decoration-color: var(--accent);
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid var(--accent);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    margin: 1.8em 0;
+    padding: 0.9em 1.2em;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-style: normal;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  img {
+    border-radius: var(--radius);
+    max-width: 100%;
+    height: auto;
+  }
+
+  figcaption {
+    color: var(--text-muted);
+    font-size: 0.82em;
+  }
+
+  ul,
+  ol {
+    margin-bottom: 1.3em;
+  }
+
+  li {
+    margin-bottom: 0.4em;
+  }
+}
+
+/* Tables: let wide ones scroll rather than blowing out the layout. */
+.page__content {
+  .table-wrapper {
+    overflow-x: auto;
+    margin: 1.8em 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  table {
+    margin: 0;
+    border: 0;
+    width: 100%;
+    font-size: 0.9em;
+    border-collapse: collapse;
+  }
+
+  .table-wrapper table {
+    margin-bottom: 0;
+  }
+
+  th {
+    background: var(--bg-elevated);
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6em 0.9em;
+    text-align: left;
+  }
+
+  td {
+    border-bottom: 1px solid var(--border);
+    padding: 0.6em 0.9em;
+    color: var(--text);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  tbody tr:hover {
+    background: var(--surface-hover);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Code
+   -------------------------------------------------------------------------- */
+
+code,
+kbd,
+samp,
+pre {
+  font-family: $font-mono;
+  font-variant-ligatures: none;
+}
+
+.page__content {
+  /* Inline code only — the descendant guard keeps this off code inside pre. */
+  code.highlighter-rouge,
+  p > code,
+  li > code,
+  td > code,
+  h1 > code,
+  h2 > code,
+  h3 > code,
+  h4 > code {
+    background: var(--code-inline-bg);
+    color: var(--code-inline-text);
+    border-radius: var(--radius-sm);
+    padding: 0.15em 0.4em;
+    font-size: 0.88em;
+    border: 1px solid var(--border);
+  }
+}
+
+div.highlighter-rouge,
+figure.highlight {
+  position: relative;
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius);
+  margin: 1.8em 0;
+  box-shadow: var(--shadow-sm);
+
+  pre.highlight,
+  pre {
+    background: transparent;
+    border: 0;
+    margin: 0;
+    padding: 1.1em 1.2em;
+    overflow-x: auto;
+    font-size: 0.86em;
+    line-height: 1.65;
+    color: var(--code-text);
+  }
+
+  code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    border: 0;
+  }
+}
+
+/* Copy-to-clipboard button, injected by modern.js */
+.code-copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.55rem;
+  font-family: $font-sans;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #c3c9d4;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s var(--ease), background-color 0.15s var(--ease),
+    color 0.15s var(--ease);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+  }
+
+  &.is-copied {
+    color: #98c379;
+    border-color: rgba(152, 195, 121, 0.4);
+  }
+}
+
+div.highlighter-rouge:hover .code-copy,
+figure.highlight:hover .code-copy,
+.code-copy:focus-visible {
+  opacity: 1;
+}
+
+/* Touch devices never hover — keep the button permanently visible there. */
+@media (hover: none) {
+  .code-copy {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Archive / post listing — cards
+   -------------------------------------------------------------------------- */
+
+.archive__subtitle {
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  font-size: 1.1em;
+  margin-top: 2em;
+  padding-bottom: 0.5em;
+}
+
+.archive__item {
+  position: relative;
+  height: 100%;
+  padding: 1.35rem 1.5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease),
+    border-color 0.18s var(--ease);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-strong);
+  }
+}
+
+.list__item,
+.grid__item {
+  margin-bottom: 1.25rem;
+}
+
+.archive__item-title {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: 1.2em;
+  line-height: 1.35;
+  border-bottom: 0;
+
+  a {
+    color: var(--text);
+    text-decoration: none;
+
+    /* Stretch the link over the whole card so the entire tile is clickable. */
+    &[rel="permalink"]::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+    }
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}
+
+.archive__item-excerpt {
+  color: var(--text-muted);
+  font-size: 0.88em;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.archive__item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  margin: 0 0 0.6rem;
+  font-size: 0.75em;
+  color: var(--text-muted);
+
+  time {
+    white-space: nowrap;
+  }
+}
+
+.archive__item-tags {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+}
+
+.archive__item-teaser {
+  border-radius: var(--radius);
+  margin-bottom: 0.9rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* Two-column card grid for the post list once there's room. */
+@media screen and (min-width: 48em) {
+  .archive .entries-list,
+  .archive .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+    gap: 1.25rem;
+  }
+
+  .archive .entries-list .list__item,
+  .archive .post-grid .list__item {
+    margin-bottom: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Table of contents
+   -------------------------------------------------------------------------- */
+
+.sidebar__right {
+  .toc {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: none;
+    overflow: hidden;
+  }
+
+  .nav__title {
+    background: transparent;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+  }
+}
+
+.toc__menu {
+  a {
+    color: var(--text-muted);
+    font-size: 0.76em;
+    padding: 0.4rem 1rem;
+    border-bottom: 0;
+    border-left: 2px solid transparent;
+    text-decoration: none;
+    transition: color 0.15s var(--ease), border-color 0.15s var(--ease),
+      background-color 0.15s var(--ease);
+
+    &:hover {
+      color: var(--text);
+      background: var(--surface-hover);
+    }
+  }
+
+  /* Applied by modern.js as the reader scrolls. */
+  .is-active > a {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: var(--accent-soft);
+    font-weight: 600;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Author sidebar
+   -------------------------------------------------------------------------- */
+
+.sidebar {
+  color: var(--text-muted);
+
+  h3,
+  h4 {
+    color: var(--text);
+  }
+}
+
+.author__avatar img {
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  max-width: 110px;
+}
+
+.author__name {
+  color: var(--text);
+  font-size: 1em;
+}
+
+.author__bio,
+.author__urls-wrapper,
+.author__urls li {
+  color: var(--text-muted);
+  font-size: 0.85em;
+}
+
+.author__urls {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+
+  a {
+    color: var(--text-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  &::before {
+    border-bottom-color: var(--border);
+  }
+
+  &::after {
+    border-bottom-color: var(--bg-elevated);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Buttons, notices, pagination
+   -------------------------------------------------------------------------- */
+
+.btn {
+  border-radius: var(--radius-sm);
+  font-weight: 550;
+  letter-spacing: 0;
+  transition: transform 0.12s var(--ease), filter 0.15s var(--ease);
+
+  &:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+  }
+}
+
+.btn--primary {
+  background-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.page__content .notice,
+.page__content .notice--primary,
+.page__content .notice--info,
+.page__content .notice--warning,
+.page__content .notice--success,
+.page__content .notice--danger {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border-radius: var(--radius);
+  box-shadow: none;
+  border-left: 3px solid var(--border-strong);
+}
+
+.page__content .notice--primary { border-left-color: var(--accent); }
+.page__content .notice--info    { border-left-color: var(--info); }
+.page__content .notice--warning { border-left-color: var(--warning); }
+.page__content .notice--success { border-left-color: var(--success); }
+.page__content .notice--danger  { border-left-color: var(--danger); }
+
+.pagination {
+  li a {
+    color: var(--text-muted);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+  }
+
+  li.active a,
+  li a.current {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  li.disabled a {
+    color: var(--text-faint);
+  }
+}
+
+.page__taxonomy .page__taxonomy-item {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 0;
+  border-radius: 999px;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--accent-contrast);
+    background: var(--accent);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. Related posts, pagination between posts
+   -------------------------------------------------------------------------- */
+
+.page__related {
+  border-top: 1px solid var(--border);
+
+  .page__related-title {
+    color: var(--text);
+  }
+}
+
+.pagination--pager {
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--accent-contrast);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  &.disabled {
+    color: var(--text-faint);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. Search
+   -------------------------------------------------------------------------- */
+
+.search-content {
+  background: var(--bg);
+}
+
+.search-content__inner-wrap {
+  background: var(--bg);
+}
+
+#search-form .search-input,
+.search-input {
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--border);
+  font-family: $font-sans;
+
+  &::placeholder {
+    color: var(--text-faint);
+  }
+
+  &:focus {
+    border-bottom-color: var(--accent);
+    outline: none;
+  }
+}
+
+.results__found {
+  color: var(--text-muted);
+}
+
+.archive__item-title a {
+  color: var(--text);
+}
+
+/* --------------------------------------------------------------------------
+   12. Footer
+   -------------------------------------------------------------------------- */
+
+.page__footer {
+  background-color: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+
+  footer {
+    color: var(--text-muted);
+  }
+
+  a {
+    color: var(--text-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}
+
+.page__footer-copyright {
+  color: var(--text-faint);
+  font-size: 0.75em;
+}
+
+.page__footer-follow {
+  .social-icons a {
+    color: var(--text-muted);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  ul {
+    margin: 0.6em 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Home hero
+   -------------------------------------------------------------------------- */
+
+.home-hero {
+  padding: 2.5rem 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+
+  &__title {
+    font-size: clamp(1.9rem, 1.2rem + 3vw, 3rem);
+    line-height: 1.1;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  &__accent {
+    background: linear-gradient(100deg, var(--accent), var(--info));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--accent); /* fallback where background-clip:text is unsupported */
+  }
+
+  &__tagline {
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    line-height: 1.65;
+    max-width: 40rem;
+    margin: 0 0 1.2rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. Taxonomy pages
+   -------------------------------------------------------------------------- */
+
+.taxonomy__index {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.4rem;
+  margin: 1.4em 0 2.4em;
+  padding: 0;
+  list-style: none;
+  background: transparent;
+  box-shadow: none;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-size: 0.82em;
+    text-decoration: none;
+    transition: border-color 0.15s var(--ease), color 0.15s var(--ease);
+
+    &:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+  }
+}
+
+.taxonomy__count {
+  color: var(--text-muted);
+  background: var(--bg-sunken);
+  border-radius: 999px;
+  padding: 0.05rem 0.45rem;
+  font-size: 0.9em;
+}
+
+.taxonomy__section {
+  margin-bottom: 2.5em;
+  border-bottom: 0;
+
+  .archive__subtitle {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+.back-to-top {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 0.78em;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   15. Print
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .masthead,
+  .page__footer,
+  .sidebar,
+  .theme-toggle,
+  .code-copy,
+  .reading-progress,
+  .social-share {
+    display: none !important;
+  }
+
+  .page__content {
+    color: #000;
+  }
+}

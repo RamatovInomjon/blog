@@ -2,17 +2,11 @@
 main:
   - title: "Machine Learning"
     url: "/machine-learning/"
+  - title: "Barcha postlar"
+    url: "/posts/"
+  - title: "Teglar"
+    url: "/tags/"
   - title: "Resume"
     url: "/resume/"
   - title: "About"
     url: "/me/"
-
-
-  # - title: "About"
-  #   url: https://mmistakes.github.io/minimal-mistakes/about/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/

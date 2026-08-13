@@ -4,5 +4,7 @@
 
 @charset "utf-8";
 
+@import "custom/tokens"; // CSS custom properties: light + dark palettes
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+@import "custom/modern"; // modern layer — must come last so it wins on source order

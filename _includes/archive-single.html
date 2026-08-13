@@ -11,7 +11,7 @@
 {% endif %}
 
 <div class="{{ include.type | default: "list" }}__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     {% if include.type == "grid" and teaser %}
       <div class="archive__item-teaser">
         <img src=
@@ -20,9 +20,23 @@
           {% else %}
             "{{ teaser | relative_url }}"
           {% endif %}
-          alt="">
+          alt="" loading="lazy">
       </div>
     {% endif %}
+
+    {% if post.date or post.read_time %}
+      <p class="archive__item-meta">
+        {% if post.date %}
+          <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+            {{ post.date | date: "%-d %B, %Y" }}
+          </time>
+        {% endif %}
+        {% if post.read_time %}
+          <span>{% include read-time.html %}</span>
+        {% endif %}
+      </p>
+    {% endif %}
+
     <h2 class="archive__item-title" itemprop="headline">
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
@@ -30,9 +44,15 @@
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
     </h2>
-    {% if post.read_time %}
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
-    {% endif %}
+
     {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
+
+    {% if post.tags.size > 0 %}
+      <p class="archive__item-tags">
+        {% for tag in post.tags limit: 4 %}
+          <a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}" class="tag-pill">{{ tag }}</a>
+        {% endfor %}
+      </p>
+    {% endif %}
   </article>
 </div>

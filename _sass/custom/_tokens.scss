@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Design tokens
+   --------------------------------------------------------------------------
+   Every colour the runtime theme switch touches is declared here, once, as a
+   CSS custom property. Three states have to agree:
+
+     :root                                     -> light (the default)
+     @media (prefers-color-scheme: dark)       -> dark, unless the reader
+       + :root:not([data-theme="light"])          explicitly chose light
+     :root[data-theme="dark"]                  -> dark, chosen explicitly
+
+   The media-query block is what makes "System" work; the [data-theme] blocks
+   are what make the toggle win over the system setting in both directions.
+   ========================================================================== */
+
+:root {
+  /* Surfaces */
+  --bg: #ffffff;
+  --bg-elevated: #f7f8fa;
+  --bg-sunken: #eef0f4;
+  --surface-hover: #f0f2f6;
+
+  /* Text */
+  --text: #1f2430;
+  --text-muted: #5c6575;
+  --text-faint: #8b94a3;
+
+  /* Lines */
+  --border: #e3e6ec;
+  --border-strong: #cdd2dc;
+
+  /* Accent */
+  --accent: #4f46e5;
+  --accent-hover: #3730a3;
+  --accent-soft: rgba(79, 70, 229, 0.1);
+  --accent-contrast: #ffffff;
+
+  /* Code — deliberately dark in both themes */
+  --code-bg: #1b1f27;
+  --code-text: #dfe3ea;
+  --code-inline-bg: #f3f4f8;
+  --code-inline-text: #b02a5b;
+  --code-border: #2f3540;
+
+  /* Status */
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --info: #0891b2;
+
+  /* Effects */
+  --shadow-sm: 0 1px 2px rgba(16, 20, 30, 0.06);
+  --shadow-md: 0 4px 12px rgba(16, 20, 30, 0.08);
+  --shadow-lg: 0 12px 32px rgba(16, 20, 30, 0.12);
+  --masthead-bg: rgba(255, 255, 255, 0.82);
+
+  /* Shape and motion */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  color-scheme: light;
+}
+
+/* Dark palette, written once and applied from both triggers below. */
+@mixin dark-tokens {
+  --bg: #0e1117;
+  --bg-elevated: #161b22;
+  --bg-sunken: #0a0d12;
+  --surface-hover: #1c222b;
+
+  --text: #e6e9ef;
+  --text-muted: #9aa4b2;
+  --text-faint: #6e7885;
+
+  --border: #262c36;
+  --border-strong: #363d49;
+
+  --accent: #8b93f8;
+  --accent-hover: #a5abfa;
+  --accent-soft: rgba(139, 147, 248, 0.14);
+  --accent-contrast: #0e1117;
+
+  --code-bg: #11151c;
+  --code-text: #dfe3ea;
+  --code-inline-bg: #1c222b;
+  --code-inline-text: #f19eb9;
+  --code-border: #262c36;
+
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --info: #38bdf8;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --masthead-bg: rgba(14, 17, 23, 0.82);
+
+  color-scheme: dark;
+}
+
+/* System preference — only when the reader has not explicitly picked light. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark-tokens;
+  }
+}
+
+/* Explicit choice always wins. */
+:root[data-theme="dark"] {
+  @include dark-tokens;
+}

@@ -1,15 +1,18 @@
 ---
 layout: home
 author_profile: true
-
 ---
 
-<!-- {% include base_path %}
-
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
-
-{% for post in paginator.posts %}
-  {% include archive-single.html %}
-{% endfor %}
-
-{% include paginator.html %} -->
+<section class="home-hero">
+  <h1 class="home-hero__title">
+    Machine Learning <span class="home-hero__accent">o'zbek tilida</span>
+  </h1>
+  <p class="home-hero__tagline">
+    Computer Vision, Deep Learning va Python bo'yicha amaliy darslar va
+    tajribalar. Nazariyani tushunarli tilda, kodni ishlaydigan holda.
+  </p>
+  <div class="home-hero__actions">
+    <a href="{{ '/machine-learning/' | relative_url }}" class="btn btn--primary">Darslarni boshlash</a>
+    <a href="{{ '/me/' | relative_url }}" class="btn">Muallif haqida</a>
+  </div>
+</section>
