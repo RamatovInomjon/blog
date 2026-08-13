@@ -1,5 +1,5 @@
 ---
-title: "Computer Vision vazifalari uchun pre-processing"
+title: Computer Vision vazifalari uchun pre-processing
 date: 2026-01-03
 categories:
   - Tutorial
