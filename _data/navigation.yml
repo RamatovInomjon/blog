@@ -2,6 +2,8 @@
 main:
   - title: "Machine Learning"
     url: "/machine-learning/"
+  - title: "Prompt Lab"
+    url: "/prompt/"
   - title: "Barcha postlar"
     url: "/posts/"
   - title: "Teglar"

@@ -1,0 +1,1235 @@
+# Prompt Lab content — English (source language).
+# uz.yml and ru.yml mirror this file key for key; ids and `cat`, `answer` values must match.
+
+ui:
+  title: "Prompt Lab"
+  tagline: "A short, free course and a prompt library for students and developers who are new to ChatGPT and Claude."
+  author: "By Inomjon Ramatov"
+  nav_course: "Course"
+  nav_library: "Prompt library"
+  nav_checklist: "Checklist"
+  course_title: "The course: 26 short lessons"
+  course_intro: "Each lesson takes about three minutes: one idea, a weak and a better prompt, a quick check, and a template you keep."
+  idea: "The idea"
+  weak: "Weak prompt"
+  better: "Better prompt"
+  why: "Why it works"
+  check: "Quick check"
+  keep: "Keep this template"
+  copy: "Copy"
+  copied: "Copied"
+  correct: "Correct."
+  wrong: "Not quite."
+  done: "Done"
+  progress: "lessons done"
+  library_title: "Prompt library"
+  library_intro: "Ready-to-use prompts. Replace the parts in [square brackets] with your own details."
+  search: "Search prompts"
+  all: "All"
+  when: "When to use"
+  empty: "No prompts match your search."
+  checklist_title: "Before you press Enter"
+  checklist_intro: "Run through this list for any prompt that matters."
+  sources_title: "Sources and further reading"
+  sources_intro: "The lessons are original, written for this site. The ideas follow the official prompting guides:"
+  placeholder_note: "Text in [square brackets] is a placeholder."
+
+modules:
+  basics: "Part 1 · The basics"
+  thinking: "Part 2 · Better answers"
+  agents: "Part 3 · Agents and code"
+  advanced: "Part 4 · Advanced: working with agents"
+
+cats:
+  study: "Study"
+  coding: "Coding"
+  writing: "Writing"
+  research: "Research"
+  career: "Career"
+  meta: "Prompting"
+  agents: "Agents"
+
+lessons:
+  - id: what-is-a-prompt
+    module: basics
+    title: "What a prompt really is"
+    idea: "A prompt is a briefing, not a search query. Imagine a very capable new colleague who has never seen your course, your code or your teacher. They know a lot, but nothing about your situation. Whatever you leave out, they have to guess."
+    weak: "Explain recursion."
+    better: |-
+      I'm a first-year student who knows Python loops and functions but has never seen recursion.
+      Explain recursion in simple words, then show one short Python example (factorial) and walk through what happens at each call.
+      Finish with two small exercises I can try myself.
+    why: "The second prompt says who is asking, what they already know and what a good answer looks like. Nothing is left to guess."
+    check:
+      q: "You get a vague, generic answer. What is the most likely cause?"
+      options:
+        - "The prompt left out the situation, so the model had to guess."
+        - "The model is not smart enough for the topic."
+      answer: 0
+      explain: "Generic answers almost always come from missing context."
+    keep: |-
+      I am [who you are and what you already know].
+      I need [what you want] so that [what you will do with it].
+      A good answer looks like [format, length, level].
+
+  - id: be-specific
+    module: basics
+    title: "Be clear and specific"
+    idea: "Say exactly what you want: the goal, the audience, the length and the format. A useful test is to show your prompt to a friend who knows nothing about the task. If they would have to ask questions, the model would too."
+    weak: "Write about climate change."
+    better: |-
+      Write a 300-word introduction for a school essay about how climate change affects water supply in Central Asia.
+      Audience: my geography teacher. Tone: formal but simple.
+      Include two concrete facts I should later verify, marked with [CHECK].
+    why: "Topic, length, audience and tone are fixed, so the answer fits the first time instead of the fifth."
+    check:
+      q: "Which addition helps the most?"
+      options:
+        - "\"Make it good and interesting.\""
+        - "\"300 words, for my teacher, formal tone, as one paragraph.\""
+      answer: 1
+      explain: "\"Good\" means nothing to the model. Length, reader and format do."
+    keep: |-
+      Task: [what to produce]
+      Audience: [who will read it]
+      Length: [words / paragraphs / items]
+      Format: [paragraph, list, table, code]
+      Tone: [formal, friendly, simple]
+
+  - id: explain-why
+    module: basics
+    title: "Explain the reason behind a rule"
+    idea: "A bare rule is followed literally. A rule with a reason is understood, and the model applies it sensibly to cases you did not mention."
+    weak: "Don't use difficult words."
+    better: "My readers are 12-year-olds learning English as a second language, so use short sentences and everyday words, and explain any technical term the first time it appears."
+    why: "Knowing who the readers are lets the model make many small choices correctly, not only the one you named."
+    check:
+      q: "Why add the reason to an instruction?"
+      options:
+        - "It makes the prompt look more polite."
+        - "The model can generalise from the reason to situations you did not list."
+      answer: 1
+      explain: "A reason carries far more information than a rule alone."
+    keep: |-
+      [Instruction], because [reason: who reads it, where it will be used, what goes wrong otherwise].
+
+  - id: show-examples
+    module: basics
+    title: "Show examples"
+    idea: "One or two examples steer format and tone better than a long description. Give three to five when you can, make them different from each other, and separate them clearly from your instructions."
+    weak: "Write flashcards for these biology notes."
+    better: |-
+      Turn my biology notes into flashcards in exactly this style:
+
+      <example>
+      Q: What does the mitochondrion do?
+      A: It produces most of the cell's energy (ATP).
+      </example>
+      <example>
+      Q: Where does photosynthesis happen?
+      A: In the chloroplasts of plant cells.
+      </example>
+
+      Notes:
+      [paste notes]
+    why: "The model copies the pattern: one short question, one short answer, the same layout every time."
+    check:
+      q: "Your examples all look nearly identical. What is the risk?"
+      options:
+        - "The model copies details you did not intend, such as the same topic or length."
+        - "There is no risk; identical examples are best."
+      answer: 0
+      explain: "Vary your examples so only the pattern you want is repeated."
+    keep: |-
+      [Task]. Follow the style of these examples.
+
+      <example>
+      [example 1]
+      </example>
+      <example>
+      [example 2, different from the first]
+      </example>
+
+      Now do the same for:
+      [your input]
+
+  - id: use-tags
+    module: basics
+    title: "Separate the parts with tags"
+    idea: "When a prompt mixes instructions, background and pasted material, wrap each part in a simple tag such as <instructions> or <text>. The model then cannot confuse your request with the material you pasted."
+    weak: "Summarize this and make it shorter and fix the mistakes here is my text I wrote yesterday about..."
+    better: |-
+      <instructions>
+      1. Fix grammar and spelling mistakes.
+      2. Then give a three-sentence summary.
+      Do not change my meaning.
+      </instructions>
+
+      <text>
+      [paste your text]
+      </text>
+    why: "Instructions and material are visibly separate, and the numbered steps are done in order."
+    check:
+      q: "Do the tag names have to be special keywords?"
+      options:
+        - "No. Any clear, consistent name works."
+        - "Yes. Only official tags are understood."
+      answer: 0
+      explain: "Tags are just labels. Pick names that describe the content and use them consistently."
+    keep: |-
+      <context>
+      [background the model needs]
+      </context>
+
+      <instructions>
+      [numbered steps]
+      </instructions>
+
+      <input>
+      [the material to work on]
+      </input>
+
+  - id: give-a-role
+    module: basics
+    title: "Give the model a role"
+    idea: "One sentence about who the model should be focuses its knowledge and tone. A specific role works better than a grand one."
+    weak: "Check my code."
+    better: |-
+      You are a senior Python developer reviewing a junior colleague's pull request.
+      Review the code below for bugs, unclear names and missing edge cases.
+      Be direct but kind, and explain each problem in one or two sentences.
+
+      [paste code]
+    why: "The role sets the standard (a senior review) and the tone (direct but kind) in a single line."
+    check:
+      q: "Which role is more useful?"
+      options:
+        - "\"You are the world's greatest genius.\""
+        - "\"You are a physics tutor preparing a student for a university entrance exam.\""
+      answer: 1
+      explain: "A specific role tells the model the level, the goal and the audience."
+    keep: |-
+      You are [a specific role] helping [who] with [what].
+      [Task]
+
+  - id: control-format
+    module: basics
+    title: "Control the format"
+    idea: "Describe the output you want instead of listing what you do not want. \"Answer in two short paragraphs\" works better than \"don't write too much, no lists\"."
+    weak: "Compare Python and JavaScript. Don't use a long text, no bullet points."
+    better: |-
+      Compare Python and JavaScript for a beginner choosing a first language.
+      Answer as a table with three columns: Criterion, Python, JavaScript.
+      Use five rows: learning curve, typical uses, job market, tools needed, first project idea.
+      After the table, give your recommendation in two sentences.
+    why: "A positive description of the format leaves one clear target to aim at."
+    check:
+      q: "You want plain paragraphs. Which instruction works better?"
+      options:
+        - "\"Write in flowing paragraphs of full sentences.\""
+        - "\"Do not use markdown.\""
+      answer: 0
+      explain: "Tell the model what to do. It is clearer than telling it what to avoid."
+    keep: |-
+      Answer as [table / numbered list / N paragraphs / JSON].
+      Include exactly: [parts or columns].
+      Keep it under [length].
+
+  - id: let-it-think
+    module: thinking
+    title: "Let it think first"
+    idea: "For maths, logic, planning or any multi-step problem, ask the model to reason step by step before giving the final answer, and then to check its own work. Reasoning first makes mistakes visible and less frequent."
+    weak: "A train leaves at 14:20 and arrives at 17:05 after two stops of 7 minutes. How long was it moving? Just the answer."
+    better: |-
+      A train leaves at 14:20 and arrives at 17:05 with two stops of 7 minutes each. How long was it actually moving?
+      Work through it step by step, then give the final answer on its own line.
+      Before you finish, check the arithmetic once more.
+    why: "You can follow each step, and the self-check catches slips before you see them."
+    check:
+      q: "When is step-by-step reasoning worth asking for?"
+      options:
+        - "For simple facts such as a capital city."
+        - "For problems with several steps, such as calculations or plans."
+      answer: 1
+      explain: "Simple lookups do not need it. Multi-step problems do."
+    keep: |-
+      [Problem]
+      Think through this step by step.
+      Then give the final answer on a separate line.
+      Before you finish, verify your result.
+
+  - id: ask-for-disagreement
+    module: thinking
+    title: "Ask it to disagree with you"
+    idea: "Models tend to agree with whatever you seem to believe. If you ask \"Is my idea good?\", you will usually hear yes. Ask for the strongest criticism instead, and do not reveal which option you prefer."
+    weak: "I think my startup idea is great. Do you agree?"
+    better: |-
+      Here is a startup idea: [describe it without saying it is yours].
+      Act as a sceptical investor. Give the three strongest reasons it could fail, ordered by seriousness.
+      Then say what evidence would change your mind about each.
+    why: "The model is asked to find problems, and it does not know which answer would please you."
+    check:
+      q: "Which question gets a more honest answer?"
+      options:
+        - "\"What are the weakest parts of this plan?\""
+        - "\"This plan is solid, right?\""
+      answer: 0
+      explain: "Leading questions get agreement. Neutral or critical questions get information."
+    keep: |-
+      Here is [an idea / plan / draft]: [paste it]
+      Give me the three strongest objections, most serious first.
+      Do not soften them. Then suggest how to fix each.
+
+  - id: verify-answers
+    module: thinking
+    title: "Check answers before you trust them"
+    idea: "A model can state a wrong fact with full confidence. Give it permission to say \"I don't know\", ask where each claim comes from, and verify anything important yourself: numbers, dates, quotes and references above all."
+    weak: "Give me five statistics about internet use in Uzbekistan with sources."
+    better: |-
+      Using only the report I pasted below, list the statistics about internet use.
+      For each one, quote the exact sentence it comes from.
+      If the report does not contain something, say "not in the report" instead of guessing.
+
+      <report>
+      [paste the report]
+      </report>
+    why: "The model works from material you provided, shows its evidence, and has a safe way to admit a gap."
+    check:
+      q: "The model gives you a reference to a scientific paper. What should you do?"
+      options:
+        - "Use it. References are always real."
+        - "Look the paper up yourself before citing it."
+      answer: 1
+      explain: "Invented references are a well-known failure. Always check them."
+    keep: |-
+      Answer using only the material below.
+      Quote the sentence that supports each claim.
+      If the answer is not in the material, say so. Do not guess.
+
+      <material>
+      [paste]
+      </material>
+
+  - id: long-documents
+    module: thinking
+    title: "Work with long documents"
+    idea: "With long material, put the document first and your question last. For several documents, wrap each one in its own tag with a name. Asking for the relevant quotes first keeps the answer tied to the text."
+    weak: "What are the main risks? [question first, then twenty pages pasted after it]"
+    better: |-
+      <document name="project_plan">
+      [paste document 1]
+      </document>
+      <document name="budget">
+      [paste document 2]
+      </document>
+
+      First, quote the passages from both documents that mention risks.
+      Then, based only on those quotes, list the three main risks and which document each comes from.
+    why: "The question sits right before the answer, and the quotes stop the model from drifting away from the text."
+    check:
+      q: "Where should a long document go in the prompt?"
+      options:
+        - "At the top, with the question after it."
+        - "At the very end, after all instructions."
+      answer: 0
+      explain: "Material first, question last gives better answers on long inputs."
+    keep: |-
+      <document name="[name]">
+      [paste]
+      </document>
+
+      First quote the parts relevant to: [question].
+      Then answer using only those quotes.
+
+  - id: iterate
+    module: thinking
+    title: "Treat the first prompt as a draft"
+    idea: "Good prompts are rarely written in one go. Read the answer, name what is wrong and say what to change. You can also ask the model to improve your prompt, or to ask you questions before it starts."
+    weak: "No, that's bad. Try again."
+    better: |-
+      This is close. Keep the structure, but:
+      1. Make the introduction half as long.
+      2. Replace the second example with one about football.
+      3. Use simpler words; I am explaining this to a 14-year-old.
+    why: "Specific feedback tells the model which parts to keep and which to change."
+    check:
+      q: "The answer is 70% right. What is the fastest way forward?"
+      options:
+        - "Start a new chat and hope for a better result."
+        - "Say exactly what to keep and what to change."
+      answer: 1
+      explain: "Targeted corrections converge faster than starting over."
+    keep: |-
+      Before you start, ask me up to five questions about anything unclear.
+      ---
+      Keep [what was good]. Change [what to fix], because [reason].
+
+  - id: brief-an-agent
+    module: agents
+    title: "Hand a job to an agent"
+    idea: "An agent (Claude Code, ChatGPT agent mode and similar tools) works for many steps without you. It needs a brief, not a question: the goal, what \"done\" looks like, what it must not touch, and when to stop and ask."
+    weak: "Make my website better."
+    better: |-
+      Goal: add a dark mode toggle to my personal website in this folder.
+      Done means: a button in the header switches themes, the choice is remembered after reload, and both themes are readable.
+      Constraints: plain CSS and JavaScript only, no new libraries. Do not change the page content.
+      Before editing, tell me your plan in a few lines. If something is unclear, ask instead of guessing.
+      When finished, list the files you changed and how you tested it.
+    why: "The agent knows the target, the limits and how its work will be judged, so it can work alone without wandering."
+    check:
+      q: "Which part of an agent brief is most often forgotten?"
+      options:
+        - "A clear definition of \"done\"."
+        - "A greeting."
+      answer: 0
+      explain: "Without a finish line, an agent either stops too early or keeps changing things."
+    keep: |-
+      Goal: [what to achieve and why]
+      Done means: [checks that prove it works]
+      Constraints: [tools, files or actions that are off limits]
+      Ask me before: [risky or irreversible steps]
+      Report: [what to tell me at the end]
+
+  - id: prompts-for-code
+    module: agents
+    title: "Prompts for code"
+    idea: "For code, give what a good bug report gives: what you expected, what happened, the exact error and how to reproduce it. Ask for the cause before the fix, and for a general solution rather than one that only makes a test pass."
+    weak: "My code doesn't work. Fix it."
+    better: |-
+      This Python function should return the average of a list, but it crashes on an empty list.
+
+      Expected: average([]) returns 0.
+      Actual: ZeroDivisionError: division by zero.
+
+      <code>
+      def average(nums):
+          return sum(nums) / len(nums)
+      </code>
+
+      First explain the cause in one or two sentences. Then give the smallest fix, and a test for the empty case.
+      Do not rewrite code that already works.
+    why: "Expected and actual behaviour point straight at the bug, and \"smallest fix\" prevents an unwanted rewrite."
+    check:
+      q: "What should a debugging prompt always include?"
+      options:
+        - "The exact error message and what you expected instead."
+        - "A note saying the bug is urgent."
+      answer: 0
+      explain: "The error text and the expected result are the two most useful facts."
+    keep: |-
+      Language and version: [e.g. Python 3.12]
+      Expected: [what should happen]
+      Actual: [what happens, with the exact error]
+      Steps to reproduce: [how]
+
+      <code>
+      [paste the relevant code]
+      </code>
+
+      Explain the cause first, then give the smallest fix and a test.
+
+  - id: custom-instructions
+    module: agents
+    title: "Set it up to remember you"
+    idea: "If you repeat the same background in every chat, save it once. ChatGPT has custom instructions and memory; Claude has projects, styles and profile preferences. Write two short notes: who you are, and how you like answers."
+    weak: "(Typing \"I'm a second-year computer science student, answer simply\" in every new chat.)"
+    better: |-
+      About me: second-year computer science student in Tashkent. I know Python well, I am learning C++ and algorithms. I read English, Uzbek and Russian.
+
+      How to answer: start with the direct answer. Use short paragraphs. Show code before theory. When I am wrong, say so plainly. If you are not sure about a fact, say that you are not sure.
+    why: "Every new chat starts with your context already in place, so short prompts still get personal answers."
+    check:
+      q: "What belongs in saved instructions?"
+      options:
+        - "Stable facts about you and your preferred answer style."
+        - "The full text of today's homework."
+      answer: 0
+      explain: "Save what stays true for months. Put task details in the chat itself."
+    keep: |-
+      About me: [role, level, field, languages]
+      My goals: [what you are working toward]
+      How to answer: [length, tone, format, what to do when unsure]
+
+  - id: chain-prompts
+    module: advanced
+    title: "Split a big job into a chain"
+    idea: "One giant prompt for a big job gives an average result at every stage. Split the work into steps, where each step has one task and its output becomes the input of the next. You can inspect and correct the result between steps, so an early mistake does not spoil everything after it."
+    weak: "Research electric cars in Uzbekistan and write me a full report with conclusions."
+    better: |-
+      We will do this in four steps. Do only step 1 now and wait for my reply.
+
+      Step 1: list the ten questions a good report on electric cars in Uzbekistan must answer.
+      Step 2: for each question I approve, collect the facts with sources.
+      Step 3: write an outline from those facts.
+      Step 4: write the report from the outline.
+    why: "Each step is small enough to do well, and you approve the direction before effort is spent on the next one."
+    check:
+      q: "What is the main benefit of a chain over one long prompt?"
+      options:
+        - "You can check and fix each stage before the next one builds on it."
+        - "It always uses fewer words."
+      answer: 0
+      explain: "A chain gives you control points. Errors are caught where they start."
+    keep: |-
+      We will do this in steps. Do only step 1 now, then stop and wait.
+
+      Step 1: [first small task]
+      Step 2: [uses the result of step 1]
+      Step 3: [uses the result of step 2]
+
+      After each step, show the result and ask whether to continue.
+
+  - id: spec-first
+    module: advanced
+    title: "Write the spec before the code"
+    idea: "An agent that starts coding from a one-line idea fills every gap with its own guesses. Have it interview you first and write a short specification: what the thing does, what it does not do, and how you will know it works. Read and correct the spec. Only then let it build."
+    weak: "Build me a to-do app."
+    better: |-
+      I want a to-do app. Do not write code yet.
+      First ask me questions, one at a time, until you understand the users, the features, and what is out of scope.
+      Then write a one-page spec: goal, features, what is not included, data it stores, and five checks that prove it works.
+      Wait for my approval of the spec before you write any code.
+    why: "Fixing a sentence in a spec takes seconds. Fixing the same misunderstanding in finished code takes hours."
+    check:
+      q: "When is the cheapest moment to correct a misunderstanding?"
+      options:
+        - "After the code is finished."
+        - "In the spec, before any code exists."
+      answer: 1
+      explain: "Agree on the plan in words first. Code is expensive to redo."
+    keep: |-
+      I want to build [idea]. Do not write code yet.
+      1. Ask me questions one at a time until the requirements are clear.
+      2. Write a short spec: goal, features, out of scope, checks that prove it works.
+      3. Wait for my approval.
+      4. Then implement it step by step, checking each step against the spec.
+
+  - id: keep-state
+    module: advanced
+    title: "Keep state across long tasks"
+    idea: "A long task does not fit into one session, and a new session remembers nothing. Make the agent keep its memory in files: a progress note with what is done and what is next, a to-do list, and tests that show what works. A new session starts by reading them."
+    weak: "Continue what we did yesterday."
+    better: |-
+      This task will take several sessions. Keep a file named progress.md and update it after every finished step with: what is done, what is next, decisions made and why, and known problems.
+      Commit working code after each step.
+      At the start of each session, read progress.md and the recent commit history, tell me in three lines where we are, and then continue.
+    why: "The files carry the memory, so nothing depends on the chat history surviving."
+    check:
+      q: "A new session starts. What should the agent do first?"
+      options:
+        - "Read the progress notes and recent changes."
+        - "Start again from the beginning to be safe."
+      answer: 0
+      explain: "Written state lets work resume exactly where it stopped."
+    keep: |-
+      Keep a progress file and update it after each step:
+      - Done: [finished steps]
+      - Next: [the next step]
+      - Decisions: [what was decided and why]
+      - Problems: [open issues]
+      At the start of every session, read it first and summarise where we are.
+
+  - id: research-hypotheses
+    module: advanced
+    title: "Research with competing hypotheses"
+    idea: "Asked to research a question, a model tends to find the first plausible answer and stop. Ask it to hold several possible explanations at once, look for evidence for and against each, state how confident it is, and check important claims in more than one source."
+    weak: "Why did our app's user numbers drop last month?"
+    better: |-
+      Our app's daily users dropped 20% last month. The data is attached.
+      List at least four possible explanations.
+      For each one: what evidence in the data would support it, what would contradict it, and what you actually find.
+      Give each a confidence level (low, medium, high) and say what extra data would settle it.
+      Do not pick a winner unless the evidence is clear.
+    why: "Several hypotheses prevent the model from locking onto the first story, and confidence levels show you where the answer is weak."
+    check:
+      q: "Why ask for evidence against each explanation too?"
+      options:
+        - "It stops the model from confirming only the first idea it had."
+        - "It makes the answer longer and more impressive."
+      answer: 0
+      explain: "Looking for disconfirming evidence is the core of honest research."
+    keep: |-
+      Question: [what you want to find out]
+      1. List several possible answers or explanations.
+      2. For each: evidence for, evidence against, confidence (low / medium / high).
+      3. Check key facts in at least two independent sources and give the sources.
+      4. Say what is still unknown and what would settle it.
+
+  - id: recurring-job
+    module: advanced
+    title: "Turn a repeated task into a reusable job"
+    idea: "If you ask for the same thing every day or week, write it once as a job: fixed sources, fixed format, a rule for what counts as worth reporting, and permission to say that nothing changed. Run it by hand first, and schedule it once the result is right."
+    weak: "What's new in AI today?"
+    better: |-
+      Daily briefing job.
+      Sources: [three sites or feeds you trust].
+      Report only news from the last 24 hours about [your topics].
+      Format: at most five items. For each: one-sentence summary, why it matters to a computer vision engineer, and the link.
+      If nothing important happened, say "Nothing important today" and stop. Do not pad the list.
+    why: "The same prompt gives a comparable result every day, and the empty-day rule keeps the briefing honest."
+    check:
+      q: "Why include a rule for days when nothing happened?"
+      options:
+        - "Without it, the model fills the list with unimportant items."
+        - "It makes the prompt shorter."
+      answer: 0
+      explain: "A model asked for five items tends to produce five items. Allow it to return fewer."
+    keep: |-
+      Job: [name], runs [daily / weekly].
+      Sources: [where to look]
+      Include only: [what counts as relevant, and the time window]
+      Format: [number of items, fields for each]
+      Compare with last time: [what changed]
+      If there is nothing new, say so and stop.
+
+  - id: numbers-and-scenarios
+    module: advanced
+    title: "Analyse numbers with scenarios"
+    idea: "For any question with numbers in it, give the real figures, and ask for more than one answer: an expected case, a better case and a worse case, with every assumption listed separately. Then ask to see the arithmetic and check one line by hand."
+    weak: "Can I afford to study abroad?"
+    better: |-
+      My facts: savings 4,000 USD, income 300 USD a month, tuition 6,000 USD a year, living costs about 700 USD a month, possible scholarship covering half the tuition.
+      Build a 12-month budget in three scenarios: expected, better, worse.
+      List every assumption in a separate table so I can change it.
+      For each scenario, tell me in which month the money runs out, if it does.
+      Show the calculation for the expected case step by step.
+    why: "Three scenarios show the range instead of one falsely precise number, and visible assumptions can be challenged and changed."
+    check:
+      q: "Why ask for the assumptions in a separate table?"
+      options:
+        - "So you can see and change what the result depends on."
+        - "So the answer looks more professional."
+      answer: 0
+      explain: "A forecast is only as good as its assumptions. Keep them where you can reach them."
+    keep: |-
+      My numbers: [real figures, or an attached file]
+      Question: [what you want to know]
+      Build three scenarios: expected, better, worse.
+      List every assumption separately.
+      Show the arithmetic for the expected case so I can check it.
+
+  - id: sources-to-slides
+    module: advanced
+    title: "From sources to a presentation"
+    idea: "A good presentation is an argument, not a pile of facts. Build it in order: first the single message, then a storyline with one point per slide, then the slides, each backed by evidence from your sources. Decide the story before any slide is written."
+    weak: "Make a presentation about renewable energy from these articles."
+    better: |-
+      <sources>
+      [paste articles or notes]
+      </sources>
+
+      Audience: my university group, 10 minutes, they know the basics.
+      Step 1: propose the one sentence the audience should remember.
+      Step 2: write a storyline of seven slides. Each slide title is a full sentence that states its point.
+      Stop here and wait for my approval.
+      Step 3: for each slide, give three short bullet points, the source of each fact, and speaker notes of about 60 words.
+    why: "Titles that state a point force a clear argument, and approving the storyline first avoids rewriting every slide."
+    check:
+      q: "Which slide title is stronger?"
+      options:
+        - "\"Solar energy\""
+        - "\"Solar is now the cheapest new power source in most countries\""
+      answer: 1
+      explain: "A title that states the point tells the audience what to conclude."
+    keep: |-
+      Audience: [who, how long, what they already know]
+      1. Propose the one message to remember.
+      2. Write a storyline: one full-sentence title per slide.
+      3. Wait for my approval.
+      4. For each slide: bullet points, the source of each fact, speaker notes.
+
+  - id: consistent-voice
+    module: advanced
+    title: "Keep one voice across many texts"
+    idea: "To produce many texts that sound like you or your project, do not describe the style from memory. Give real samples, ask the model to extract the rules of the voice into a short guide, correct the guide, and then reuse it with every request."
+    weak: "Write ten posts for my Telegram channel in my style."
+    better: |-
+      <samples>
+      [paste five of your real posts]
+      </samples>
+
+      Step 1: study the samples and write a voice guide: sentence length, typical words, what I never do, how I open and close a post. At most ten rules, each with an example from the samples.
+      Wait for my corrections.
+      Step 2: using the corrected guide, write three posts about [topics]. After each one, name the two rules it follows most clearly.
+    why: "The guide turns a vague feeling into explicit rules you can check, correct and reuse."
+    check:
+      q: "What is the best source for a voice guide?"
+      options:
+        - "Adjectives such as \"friendly and professional\"."
+        - "Real samples of the writing you want to match."
+      answer: 1
+      explain: "Samples show the voice. Adjectives only name it."
+    keep: |-
+      <samples>
+      [3–5 real examples]
+      </samples>
+
+      1. Extract a voice guide of at most ten rules, each with an example.
+      2. Wait for my corrections.
+      3. Write [what] following the guide.
+
+  - id: stay-in-control
+    module: advanced
+    title: "Stay in control of your agent"
+    idea: "An agent with tools can delete files, send messages and spend money. Say which actions it may take freely and which need your approval. A simple rule works well: anything that can be undone is allowed, and anything that cannot be undone or that other people will see needs a question first. Ask it to do only what was requested."
+    weak: "Clean up my project folder."
+    better: |-
+      Tidy the project folder.
+      You may freely: read any file, create new folders, and move files inside the project.
+      Ask me first before you: delete anything, change files tracked by git, or install anything.
+      Do only what I asked. If you notice other problems, list them at the end instead of fixing them.
+      Finish with a list of every change you made.
+    why: "The agent can move fast on safe actions, and the risky ones always pass through you."
+    check:
+      q: "Which action should an agent always ask about first?"
+      options:
+        - "Reading a file."
+        - "Deleting files or sending a message to other people."
+      answer: 1
+      explain: "Irreversible actions and actions other people will see need your approval."
+    keep: |-
+      You may freely: [safe, reversible actions]
+      Ask me before: [deleting, sending, paying, publishing, installing]
+      Do only what I asked. List other problems you notice; do not fix them.
+      At the end, list every change you made.
+
+  - id: honest-code
+    module: advanced
+    title: "Ask for real solutions, not passing tests"
+    idea: "A coding agent told to \"make the tests pass\" may do exactly that and nothing more, for example by handling only the tested inputs. Ask for a solution that works for all valid inputs, tell it to read the code before making claims about it, and ask it to tell you when a test itself looks wrong."
+    weak: "The tests are failing. Make them pass."
+    better: |-
+      Three tests in test_parser.py fail.
+      Read the parser code and the tests before you answer. Do not guess about code you have not opened.
+      Find the real cause and fix it so the parser works for all valid inputs, not only the tested ones.
+      Do not edit the tests to make them pass. If a test looks wrong, stop and explain why.
+      Then run the full test suite and report the result exactly, including any failures.
+    why: "The goal is stated as correct behaviour, so shortcuts that only satisfy the tests are ruled out."
+    check:
+      q: "The agent says \"all fixed\" but you did not see a test run. What do you ask?"
+      options:
+        - "\"Run the tests and show me the output.\""
+        - "Nothing. If it says fixed, it is fixed."
+      answer: 0
+      explain: "Ask for evidence. A claim of success is not a test result."
+    keep: |-
+      Read the relevant code before you answer. Do not guess.
+      Fix the real cause so it works for all valid inputs, not only the tested ones.
+      Do not change the tests. If a test looks wrong, tell me.
+      Run the tests and report the exact result.
+
+  - id: system-prompt
+    module: advanced
+    title: "Write a system prompt for your own bot"
+    idea: "When you build a bot or an app on top of a model, the system prompt is its job description. Describe the role, the users, what it must know, the rules together with their reasons, the answer format, and what to do when it does not know. Then test it on real questions, including hostile and off-topic ones."
+    weak: "You are a helpful assistant for my shop."
+    better: |-
+      You are the support assistant of an online bookshop in Tashkent. Customers write in Uzbek or Russian; answer in the language of their message.
+
+      <knowledge>
+      [delivery terms, prices, return policy]
+      </knowledge>
+
+      Rules:
+      - Answer only from the knowledge above. If the answer is not there, say you will pass the question to a human, because a wrong answer about prices costs us customers.
+      - Keep answers under four sentences, because customers read them on a phone.
+      - Never ask for card numbers, because payment happens only on the website.
+    why: "The bot knows its role, its limits and the reason for each rule, so it behaves sensibly in cases you did not list."
+    check:
+      q: "What should you do after writing a system prompt?"
+      options:
+        - "Test it on real, difficult and off-topic questions."
+        - "Publish it immediately."
+      answer: 0
+      explain: "A system prompt is a draft until it has been tested on hard cases."
+    keep: |-
+      You are [role] for [users]. [Language and tone.]
+
+      <knowledge>
+      [facts the bot may rely on]
+      </knowledge>
+
+      Rules:
+      - [rule], because [reason].
+      - If you do not know, [what to do].
+      Format: [length and structure of answers]
+
+prompts:
+  - id: explain-three-levels
+    cat: study
+    title: "Explain at three levels"
+    use: "A topic feels too hard or too abstract."
+    text: |-
+      Explain [topic] at three levels:
+      1. To a 10-year-old, in three sentences.
+      2. To a high-school student, with one everyday example.
+      3. To a first-year university student, using the correct terms.
+      Then tell me the one idea I must understand before anything else.
+
+  - id: quiz-me
+    cat: study
+    title: "Quiz me until I know it"
+    use: "Before an exam, to find the gaps."
+    text: |-
+      I am preparing for an exam on [subject / topic].
+      Ask me one question at a time, starting easy and getting harder.
+      After each answer, tell me whether it is correct, explain briefly, and then ask the next question.
+      After ten questions, list the topics I should revise.
+
+  - id: study-plan
+    cat: study
+    title: "Build a study plan"
+    use: "You have a deadline and too much material."
+    text: |-
+      I have [number] days until my [exam / deadline] in [subject].
+      I can study [hours] hours a day. The topics are: [list].
+      I am weakest at: [topics].
+      Make a day-by-day plan as a table: day, topics, task, how to check myself.
+      Leave the last day for revision only.
+
+  - id: notes-to-summary
+    cat: study
+    title: "Turn messy notes into a summary"
+    use: "After a lecture, with unorganised notes."
+    text: |-
+      Below are my raw lecture notes. Organise them into:
+      1. A five-sentence summary.
+      2. Key terms with one-line definitions.
+      3. Three questions that could appear in an exam.
+      Do not add facts that are not in my notes. Mark anything unclear with [?].
+
+      <notes>
+      [paste notes]
+      </notes>
+
+  - id: feynman-check
+    cat: study
+    title: "Check my understanding"
+    use: "You think you understand a topic and want proof."
+    text: |-
+      I will explain [topic] in my own words. Act as a strict but fair teacher.
+      Point out what is wrong, what is missing and what is imprecise.
+      Do not give the full correct explanation yet. Ask me two questions that help me fix it myself.
+
+      My explanation:
+      [write your explanation]
+
+  - id: explain-code
+    cat: coding
+    title: "Explain this code"
+    use: "You inherited or copied code you do not understand."
+    text: |-
+      Explain what this code does to someone who knows basic [language].
+      First give a two-sentence overview. Then go through it block by block.
+      Point out anything unusual or risky.
+
+      <code>
+      [paste code]
+      </code>
+
+  - id: debug
+    cat: coding
+    title: "Find the bug"
+    use: "Code crashes or gives the wrong result."
+    text: |-
+      Language and version: [e.g. Python 3.12]
+      What I expected: [expected behaviour]
+      What happens: [actual behaviour and the exact error message]
+
+      <code>
+      [paste code]
+      </code>
+
+      Explain the cause first. Then give the smallest fix. Do not rewrite parts that work.
+
+  - id: code-review
+    cat: coding
+    title: "Review my code"
+    use: "Before submitting an assignment or a pull request."
+    text: |-
+      You are a senior [language] developer reviewing a junior colleague's code.
+      Check for: bugs, edge cases, unclear names, repeated code and security problems.
+      List the issues in order of importance. For each, show the line and a suggested fix.
+      End with one thing I did well.
+
+      <code>
+      [paste code]
+      </code>
+
+  - id: write-tests
+    cat: coding
+    title: "Write tests"
+    use: "You have a function and no tests."
+    text: |-
+      Write unit tests for the function below using [test framework].
+      Cover the normal case, edge cases (empty input, very large input, wrong types) and one case that should raise an error.
+      Name each test so it says what it checks. Do not change the function itself.
+
+      <code>
+      [paste function]
+      </code>
+
+  - id: learn-by-project
+    cat: coding
+    title: "Learn a technology through a project"
+    use: "You want to learn a new language or library by building."
+    text: |-
+      I know [what you already know] and want to learn [technology].
+      Design one small project I can finish in [time] that teaches the core ideas.
+      Split it into five steps. For each step, say what I will learn and how I can check that it works.
+      Do not write the code for me. Give hints only when I ask.
+
+  - id: improve-draft
+    cat: writing
+    title: "Improve my draft, keep my voice"
+    use: "Your text is nearly done but rough."
+    text: |-
+      Improve the text below. Fix grammar, cut repetition and make unclear sentences clearer.
+      Keep my voice and my meaning. Do not make it sound more formal than it is.
+      After the text, list the five most important changes you made and why.
+
+      <text>
+      [paste text]
+      </text>
+
+  - id: formal-email
+    cat: writing
+    title: "Write a formal email"
+    use: "Writing to a teacher, university or employer."
+    text: |-
+      Write a polite, short email to [who: e.g. my professor].
+      Purpose: [what you are asking for or reporting].
+      Facts to include: [dates, names, details].
+      Tone: respectful but not stiff. Under 120 words. Give a subject line too.
+
+  - id: essay-outline
+    cat: writing
+    title: "Outline an essay"
+    use: "You have a topic and a blank page."
+    text: |-
+      I have to write a [length]-word essay on: [topic].
+      My position is: [your opinion, or "not decided yet"].
+      Give me an outline: thesis sentence, three main points with one piece of evidence each, one counter-argument and a conclusion idea.
+      Do not write the essay itself.
+
+  - id: shorten
+    cat: writing
+    title: "Make it shorter"
+    use: "You are over the word limit."
+    text: |-
+      Shorten the text below to about [number] words.
+      Keep every key fact and the original order. Remove repetition, filler and weak examples first.
+      Then tell me what you removed.
+
+      <text>
+      [paste text]
+      </text>
+
+  - id: natural-translation
+    cat: writing
+    title: "Translate naturally"
+    use: "You need a translation that does not sound translated."
+    text: |-
+      Translate the text below from [language] to [language].
+      Translate the meaning, not word by word, so it reads as if written by a native speaker.
+      Keep names, numbers and technical terms exact.
+      If a phrase has no good equivalent, give your best option and explain the choice in a note.
+
+      <text>
+      [paste text]
+      </text>
+
+  - id: compare-options
+    cat: research
+    title: "Compare options and decide"
+    use: "Choosing between tools, courses, laptops or universities."
+    text: |-
+      I am choosing between: [option A], [option B], [option C].
+      What matters to me, in order: [criteria].
+      My situation: [budget, level, deadline].
+      Compare them in a table by my criteria. Then recommend one, and say what would make you pick a different one.
+      If you are unsure about a fact, mark it with [verify].
+
+  - id: summarize-source
+    cat: research
+    title: "Summarise an article with evidence"
+    use: "Reading a long article or paper."
+    text: |-
+      <article>
+      [paste article]
+      </article>
+
+      Summarise the article above:
+      1. The main claim in one sentence.
+      2. The three strongest pieces of evidence, each with a direct quote.
+      3. What the article does not prove or leaves open.
+      Use only what is in the article.
+
+  - id: devils-advocate
+    cat: research
+    title: "Argue against my position"
+    use: "Before a debate, a thesis defence or a big decision."
+    text: |-
+      Here is a position: [state it neutrally].
+      Give the three strongest arguments against it, as a well-informed opponent would.
+      For each one, say how a defender could best respond.
+      Do not tell me which side is right.
+
+  - id: research-questions
+    cat: research
+    title: "Find good research questions"
+    use: "Starting a coursework or a thesis."
+    text: |-
+      My field is [field] and I am interested in [broad topic].
+      I have [time] and access to [data, tools, lab].
+      Suggest five research questions that are narrow enough to finish.
+      For each: why it matters, what data I need and the main risk.
+
+  - id: extract-table
+    cat: research
+    title: "Pull data into a table"
+    use: "Facts are scattered across a text."
+    text: |-
+      From the text below, extract every [type of item: e.g. company, date, price] into a table with columns: [columns].
+      One row per item. If a value is missing, write "n/a". Do not guess.
+
+      <text>
+      [paste text]
+      </text>
+
+  - id: cv-bullets
+    cat: career
+    title: "Stronger CV bullet points"
+    use: "Your CV lists duties, not results."
+    text: |-
+      Rewrite these CV bullet points for a [target role] position.
+      Start each with a strong verb, and show the result with numbers where I gave them.
+      Do not invent numbers or achievements. If a result is missing, ask me for it.
+
+      [paste bullet points]
+
+  - id: mock-interview
+    cat: career
+    title: "Mock interview"
+    use: "Preparing for a job or internship interview."
+    text: |-
+      Act as an interviewer for a [role] position at [type of company].
+      Ask me one question at a time: first general, then technical, then about a past situation.
+      After each answer, give short feedback: what was strong, what was missing and a better way to say it.
+      After six questions, give an overall assessment.
+
+  - id: cover-letter
+    cat: career
+    title: "Cover letter from my real experience"
+    use: "Applying for a job, internship or scholarship."
+    text: |-
+      Write a cover letter of under 250 words for this opening:
+      <job>
+      [paste the job description]
+      </job>
+
+      My background:
+      <me>
+      [paste your CV or key facts]
+      </me>
+
+      Use only facts from my background. Connect two of my experiences to their requirements. Plain, confident tone, no clichés.
+
+  - id: learning-roadmap
+    cat: career
+    title: "Roadmap to a skill"
+    use: "You know where you want to get to, but not the path."
+    text: |-
+      I want to become [goal: e.g. a junior backend developer] in [time].
+      I already know: [skills]. I can spend [hours] hours a week.
+      Build a month-by-month roadmap: what to learn, one project per month and how to tell that I am ready to move on.
+      Prefer free resources. Say what I can safely skip.
+
+  - id: portfolio-project
+    cat: career
+    title: "Portfolio project ideas"
+    use: "You need projects that show real skill."
+    text: |-
+      I am a [level] [field] student who knows [technologies].
+      Suggest five portfolio projects that would impress an employer hiring for [role].
+      For each: the problem it solves, the skills it shows, the size in weeks and the hardest part.
+      Avoid the most common tutorial projects.
+
+  - id: improve-my-prompt
+    cat: meta
+    title: "Improve my prompt"
+    use: "Your prompt gives weak results and you do not know why."
+    text: |-
+      Here is a prompt I wrote:
+      <prompt>
+      [paste your prompt]
+      </prompt>
+
+      What I wanted: [goal]. What I got instead: [problem].
+      Explain what is unclear or missing in my prompt. Then write an improved version, and list what you changed.
+
+  - id: ask-me-first
+    cat: meta
+    title: "Ask me questions first"
+    use: "The task is big and you are not sure what to say."
+    text: |-
+      I want you to help me with: [task].
+      Before you start, ask me the questions you need answered to do this well, one at a time, five at most.
+      Then summarise what you understood and wait for my confirmation.
+
+  - id: agent-brief
+    cat: meta
+    title: "Turn a task into an agent brief"
+    use: "Before giving a multi-step job to an AI agent."
+    text: |-
+      Turn my rough request into a clear brief for an AI agent.
+      Use these headings: Goal, Done means, Constraints, Ask me before, Final report.
+      If my request is missing something needed for a heading, ask me instead of inventing it.
+
+      My request: [describe the task in your own words]
+
+  - id: custom-instructions-writer
+    cat: meta
+    title: "Write my custom instructions"
+    use: "Setting up ChatGPT or Claude for yourself."
+    text: |-
+      Interview me to write my custom instructions.
+      Ask about: my role and level, what I use AI for, how long I like answers and what annoys me in AI answers.
+      Ask one question at a time. Then write two short sections: "About me" and "How to answer me", each under 100 words.
+
+  - id: self-critique
+    cat: meta
+    title: "Check your own answer"
+    use: "The answer matters and you want a second pass."
+    text: |-
+      Review your previous answer as a critical expert would.
+      List any errors, weak claims or missing points.
+      Then give a corrected version, and say which parts you are still unsure about.
+
+  - id: chain-planner
+    cat: agents
+    title: "Plan a job as a chain"
+    use: "A task is too big for one prompt."
+    text: |-
+      I want to do this: [big task].
+      Break it into four to six steps, where each step has one clear output and uses the output of the step before.
+      Show the plan as a table: step, input, output, how I check it.
+      Then do only step 1 and wait for my reply.
+
+  - id: spec-interview
+    cat: agents
+    title: "Interview me and write the spec"
+    use: "Before an agent builds an app, a script or a site."
+    text: |-
+      I want to build: [idea]. Do not write code yet.
+      Ask me questions one at a time until the requirements are clear, eight at most.
+      Then write a one-page spec: goal, users, features, out of scope, data, and five checks that prove it works.
+      Wait for my approval before building.
+
+  - id: progress-notes
+    cat: agents
+    title: "Keep progress notes"
+    use: "Work that will continue in another session."
+    text: |-
+      This work will continue in later sessions.
+      Create progress.md and keep it updated: done, next, decisions with reasons, open problems.
+      Before you stop, update the file so that someone with no memory of this chat can continue from it.
+      At the start of a session, read it first and tell me where we are.
+
+  - id: hypothesis-research
+    cat: agents
+    title: "Research with hypotheses"
+    use: "You need a reliable answer, not the first one found."
+    text: |-
+      Research this question: [question].
+      List several possible answers. For each, give the evidence for it, the evidence against it and your confidence (low, medium, high).
+      Check the key facts in at least two independent sources and give the links.
+      End with what is still unknown.
+
+  - id: daily-briefing
+    cat: agents
+    title: "Daily briefing"
+    use: "Following a field without reading everything."
+    text: |-
+      Prepare my briefing on [topics] from [sources], covering the last 24 hours.
+      At most five items. For each: a one-sentence summary, why it matters for [your role], and the link.
+      If nothing important happened, say so and stop. Do not pad the list.
+
+  - id: scenario-model
+    cat: agents
+    title: "Three-scenario model"
+    use: "A decision that depends on numbers."
+    text: |-
+      My numbers: [figures, or an attached file].
+      Question: [what you want to know].
+      Build expected, better and worse scenarios over [period].
+      Put every assumption in a separate table.
+      Show the arithmetic for the expected case, and tell me which assumption changes the result the most.
+
+  - id: slides-storyline
+    cat: agents
+    title: "Storyline for a presentation"
+    use: "Turning research or notes into slides."
+    text: |-
+      <sources>
+      [paste material]
+      </sources>
+
+      Audience: [who], time: [minutes].
+      First propose the one message to remember. Then write a storyline of [number] slides, where each title is a full sentence stating the point.
+      Wait for my approval, then write bullet points, sources and speaker notes for each slide.
+
+  - id: voice-guide
+    cat: agents
+    title: "Extract my voice guide"
+    use: "Before producing many texts in one style."
+    text: |-
+      <samples>
+      [paste 3–5 of your real texts]
+      </samples>
+
+      Study these samples and write a voice guide of at most ten rules: sentence length, typical words, openings, endings and what I never do.
+      Give one example from the samples for each rule. Then ask me what to correct.
+
+  - id: agent-safety-rules
+    cat: agents
+    title: "Safety rules for an agent"
+    use: "Giving an agent access to your files or accounts."
+    text: |-
+      Rules for this task:
+      You may freely: [read files, create drafts, run tests].
+      Ask me before: [deleting, sending, paying, publishing, installing].
+      Do only what I asked. If you notice other problems, list them at the end.
+      If something fails, tell me exactly what happened. Do not hide it and do not work around it silently.
+      Finish with a list of every change you made.
+
+  - id: real-fix
+    cat: agents
+    title: "Fix the cause, not the test"
+    use: "A coding agent is fixing failing tests."
+    text: |-
+      Tests in [file] are failing.
+      Read the code and the tests before you answer. Do not guess about code you have not opened.
+      Find the real cause and fix it for all valid inputs, not only the tested ones.
+      Do not edit the tests. If a test looks wrong, stop and explain.
+      Run the full test suite and report the exact result.
+
+  - id: system-prompt-builder
+    cat: agents
+    title: "Build a system prompt"
+    use: "Making your own bot or assistant."
+    text: |-
+      Help me write a system prompt for [bot purpose].
+      Ask me about: the users, the language and tone, what the bot must know, what it must never do and why, and what to do when it does not know.
+      Then write the system prompt with a role, a <knowledge> section, rules with reasons and an answer format.
+      Finally, give me ten test questions, including three hostile or off-topic ones.
+
+checklist:
+  - "Did I say who I am and what I already know?"
+  - "Is the task clear: goal, audience, length and format?"
+  - "Did I explain why, not only what?"
+  - "Would one or two examples help?"
+  - "Is pasted material separated from instructions with tags?"
+  - "For hard problems: did I ask for step-by-step reasoning and a self-check?"
+  - "Did I ask for criticism instead of agreement?"
+  - "Will I verify the facts, numbers and references myself?"

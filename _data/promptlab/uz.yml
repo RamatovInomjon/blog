@@ -1,0 +1,1235 @@
+# Prompt Lab kontenti — o'zbekcha (en.yml faylining tarjimasi).
+# Bu fayl en.yml ni kalitma-kalit takrorlaydi; id, `cat` va `answer` qiymatlari bir xil bo'lishi shart.
+
+ui:
+  title: "Prompt Lab"
+  tagline: "ChatGPT va Claude bilan endi tanishayotgan talabalar va dasturchilar uchun qisqa, bepul kurs va promptlar kutubxonasi."
+  author: "Muallif: Inomjon Ramatov"
+  nav_course: "Kurs"
+  nav_library: "Promptlar kutubxonasi"
+  nav_checklist: "Tekshiruv ro'yxati"
+  course_title: "Kurs: 26 ta qisqa dars"
+  course_intro: "Har bir dars taxminan uch daqiqa oladi: bitta g'oya, kuchsiz va yaxshiroq prompt, kichik savol hamda o'zingizda qoladigan shablon."
+  idea: "G'oya"
+  weak: "Kuchsiz prompt"
+  better: "Yaxshiroq prompt"
+  why: "Nega bu ishlaydi"
+  check: "O'zingizni tekshiring"
+  keep: "Shablonni saqlab qo'ying"
+  copy: "Nusxalash"
+  copied: "Nusxalandi"
+  correct: "To'g'ri."
+  wrong: "Unchalik emas."
+  done: "Bajarildi"
+  progress: "dars o'tildi"
+  library_title: "Promptlar kutubxonasi"
+  library_intro: "Tayyor promptlar. [Kvadrat qavs] ichidagi qismlarni o'z ma'lumotlaringiz bilan almashtiring."
+  search: "Promptlarni qidirish"
+  all: "Hammasi"
+  when: "Qachon ishlatiladi"
+  empty: "Qidiruvingizga mos prompt topilmadi."
+  checklist_title: "Enter tugmasini bosishdan oldin"
+  checklist_intro: "Muhim bo'lgan har qanday promptni shu ro'yxat bo'yicha tekshirib chiqing."
+  sources_title: "Manbalar va qo'shimcha o'qish uchun"
+  sources_intro: "Darslar shu sayt uchun maxsus yozilgan. G'oyalar esa rasmiy prompt yozish qo'llanmalariga tayanadi:"
+  placeholder_note: "[Kvadrat qavs] ichidagi matn — o'rniga o'zingiznikini yozadigan joy."
+
+modules:
+  basics: "1-qism · Asoslar"
+  thinking: "2-qism · Yaxshiroq javoblar"
+  agents: "3-qism · Agentlar va kod"
+  advanced: "4-qism · Ilg'or daraja: agentlar bilan ishlash"
+
+cats:
+  study: "O'qish"
+  coding: "Dasturlash"
+  writing: "Yozish"
+  research: "Tadqiqot"
+  career: "Karyera"
+  meta: "Prompt yozish"
+  agents: "Agentlar"
+
+lessons:
+  - id: what-is-a-prompt
+    module: basics
+    title: "Prompt aslida nima"
+    idea: "Prompt qidiruv so'rovi emas, balki ishni tushuntirib berishdir. Tasavvur qiling: yoningizda juda qobiliyatli yangi hamkasb bor, lekin u sizning kursingizni ham, kodingizni ham, o'qituvchingizni ham ko'rmagan. U ko'p narsani biladi, ammo sizning vaziyatingizdan bexabar. Siz aytmagan narsani u taxmin qilishga majbur."
+    weak: "Rekursiyani tushuntir."
+    better: |-
+      Men 1-kurs talabasiman. Python'da sikl va funksiyalarni bilaman, lekin rekursiyani hali ko'rmaganman.
+      Rekursiyani sodda so'zlar bilan tushuntiring, keyin Python'da bitta qisqa misol (faktorial) ko'rsating va har bir chaqiruvda nima sodir bo'lishini qadam-baqadam ko'rsatib bering.
+      Oxirida o'zim sinab ko'rishim uchun ikkita kichik mashq bering.
+    why: "Ikkinchi promptda kim so'rayotgani, u nimani bilishi va yaxshi javob qanday bo'lishi aytilgan. Taxmin qilishga hech narsa qolmagan."
+    check:
+      q: "Sizga noaniq, umumiy javob keldi. Eng ehtimolli sabab nima?"
+      options:
+        - "Promptda vaziyat aytilmagan, shuning uchun model taxmin qilishga majbur bo'lgan."
+        - "Model bu mavzu uchun yetarlicha aqlli emas."
+      answer: 0
+      explain: "Umumiy javoblar deyarli har doim kontekst yetishmasligidan kelib chiqadi."
+    keep: |-
+      Men [kimsiz va nimani allaqachon bilasiz].
+      Menga [nima kerak] kerak, chunki [undan qanday foydalanasiz].
+      Yaxshi javob shunday bo'ladi: [format, hajm, daraja].
+
+  - id: be-specific
+    module: basics
+    title: "Aniq va tushunarli yozing"
+    idea: "Nima istayotganingizni aniq ayting: maqsad, o'quvchi, hajm va format. Foydali sinov: promptingizni vazifadan mutlaqo bexabar do'stingizga ko'rsating. Agar u savol berishga majbur bo'lsa, model ham xuddi shu ahvolga tushadi."
+    weak: "Iqlim o'zgarishi haqida yoz."
+    better: |-
+      Iqlim o'zgarishi Markaziy Osiyoda suv ta'minotiga qanday ta'sir qilishi haqidagi maktab inshosi uchun 300 so'zli kirish qismini yozing.
+      O'quvchi: geografiya o'qituvchim. Ohang: rasmiy, lekin sodda.
+      Keyinroq o'zim tekshirib ko'rishim kerak bo'lgan ikkita aniq faktni qo'shing va ularni [TEKSHIRISH] deb belgilang.
+    why: "Mavzu, hajm, o'quvchi va ohang oldindan belgilangan, shuning uchun javob beshinchi urinishda emas, birinchisidayoq mos keladi."
+    check:
+      q: "Qaysi qo'shimcha ko'proq yordam beradi?"
+      options:
+        - "\"Yaxshi va qiziqarli qilib yoz.\""
+        - "\"300 so'z, o'qituvchim uchun, rasmiy ohangda, bitta xatboshi qilib.\""
+      answer: 1
+      explain: "\"Yaxshi\" degan so'z modelga hech narsa bermaydi. Hajm, o'quvchi va format esa beradi."
+    keep: |-
+      Vazifa: [nima tayyorlash kerak]
+      O'quvchi: [kim o'qiydi]
+      Hajm: [so'zlar / xatboshilar / bandlar soni]
+      Format: [xatboshi, ro'yxat, jadval, kod]
+      Ohang: [rasmiy, do'stona, sodda]
+
+  - id: explain-why
+    module: basics
+    title: "Qoidaning sababini tushuntiring"
+    idea: "Quruq qoida so'zma-so'z bajariladi. Sababi aytilgan qoida esa tushuniladi va model uni siz tilga olmagan holatlarda ham o'rinli qo'llaydi."
+    weak: "Qiyin so'zlarni ishlatma."
+    better: "O'quvchilarim ingliz tilini ikkinchi til sifatida o'rganayotgan 12 yoshli bolalar. Shuning uchun qisqa gaplar va kundalik so'zlardan foydalaning, har bir atamani esa birinchi uchraganida tushuntirib o'ting."
+    why: "O'quvchi kimligini bilgan model faqat siz aytgan narsani emas, ko'plab mayda tanlovlarni ham to'g'ri qiladi."
+    check:
+      q: "Ko'rsatmaga sababini qo'shish nega kerak?"
+      options:
+        - "Prompt xushmuomalaroq ko'rinadi."
+        - "Model sababga tayanib, siz sanab o'tmagan vaziyatlarda ham to'g'ri yo'l tutadi."
+      answer: 1
+      explain: "Sabab qoidaning o'zidan ancha ko'p ma'lumot beradi."
+    keep: |-
+      [Ko'rsatma], chunki [sabab: kim o'qiydi, qayerda ishlatiladi, aks holda nima xato ketadi].
+
+  - id: show-examples
+    module: basics
+    title: "Misol ko'rsating"
+    idea: "Bir-ikkita misol format va ohangni uzun tavsifdan ko'ra yaxshiroq yo'naltiradi. Imkon bo'lsa, uch-beshta misol bering, ular bir-biridan farq qilsin va ko'rsatmalaringizdan aniq ajratilgan bo'lsin."
+    weak: "Mana bu biologiya konspektidan fleshkartalar yoz."
+    better: |-
+      Biologiya konspektimni aynan mana shu uslubdagi fleshkartalarga aylantiring:
+
+      <example>
+      S: Mitoxondriya qanday vazifani bajaradi?
+      J: Hujayra energiyasining (ATF) asosiy qismini ishlab chiqaradi.
+      </example>
+      <example>
+      S: Fotosintez qayerda sodir bo'ladi?
+      J: O'simlik hujayralarining xloroplastlarida.
+      </example>
+
+      Konspekt:
+      [konspektni shu yerga qo'ying]
+    why: "Model andozani takrorlaydi: bitta qisqa savol, bitta qisqa javob va har safar bir xil ko'rinish."
+    check:
+      q: "Misollaringizning hammasi deyarli bir xil. Bunda qanday xavf bor?"
+      options:
+        - "Model siz ko'zda tutmagan tafsilotlarni ham ko'chiradi, masalan, bir xil mavzu yoki hajmni."
+        - "Hech qanday xavf yo'q, bir xil misollar eng yaxshisi."
+      answer: 0
+      explain: "Misollarni turlicha qiling, shunda faqat o'zingizga kerakli andoza takrorlanadi."
+    keep: |-
+      [Vazifa]. Quyidagi misollar uslubiga amal qiling.
+
+      <example>
+      [1-misol]
+      </example>
+      <example>
+      [2-misol, birinchisidan farq qiladigan]
+      </example>
+
+      Endi xuddi shu ishni mana bu uchun bajaring:
+      [o'z matningiz]
+
+  - id: use-tags
+    module: basics
+    title: "Qismlarni teglar bilan ajrating"
+    idea: "Promptda ko'rsatmalar, kontekst va tashqaridan qo'yilgan material aralashib ketsa, har bir qismni <instructions> yoki <text> kabi oddiy tegga o'rang. Shunda model sizning iltimosingizni siz qo'ygan material bilan adashtirmaydi."
+    weak: "Buni qisqacha aytib ber va qisqaroq qil va xatolarini tuzat mana kecha yozgan matnim u ... haqida"
+    better: |-
+      <instructions>
+      1. Grammatik va imlo xatolarini tuzating.
+      2. Keyin uch gapdan iborat xulosa bering.
+      Fikrimning ma'nosini o'zgartirmang.
+      </instructions>
+
+      <text>
+      [matningizni shu yerga qo'ying]
+      </text>
+    why: "Ko'rsatmalar va material bir-biridan yaqqol ajralib turadi, raqamlangan qadamlar esa tartib bilan bajariladi."
+    check:
+      q: "Teg nomlari maxsus kalit so'zlar bo'lishi shartmi?"
+      options:
+        - "Yo'q. Har qanday tushunarli va izchil nom bo'laveradi."
+        - "Ha. Model faqat rasmiy teglarni tushunadi."
+      answer: 0
+      explain: "Teglar shunchaki yorliq. Mazmunni ifodalaydigan nom tanlang va uni bir xilda ishlating."
+    keep: |-
+      <context>
+      [modelga kerak bo'ladigan ma'lumot]
+      </context>
+
+      <instructions>
+      [raqamlangan qadamlar]
+      </instructions>
+
+      <input>
+      [ishlov beriladigan material]
+      </input>
+
+  - id: give-a-role
+    module: basics
+    title: "Modelga rol bering"
+    idea: "Model kim bo'lishi kerakligi haqidagi bitta gap uning bilimi va ohangini bir nuqtaga jamlaydi. Aniq rol dabdabali roldan yaxshiroq ishlaydi."
+    weak: "Kodimni tekshir."
+    better: |-
+      Siz tajribali (senior) Python dasturchisisiz va boshlovchi (junior) hamkasbingizning pull request'ini ko'rib chiqyapsiz.
+      Quyidagi kodni xatolar, tushunarsiz nomlar va hisobga olinmagan chekka holatlar bo'yicha tekshiring.
+      Ochiq, lekin xayrixohlik bilan yozing va har bir muammoni bir-ikki gapda tushuntiring.
+
+      [kodni shu yerga qo'ying]
+    why: "Rol bir qatorning o'zida ham talab darajasini (tajribali dasturchi tekshiruvi), ham ohangni (ochiq, lekin xayrixoh) belgilab beradi."
+    check:
+      q: "Qaysi rol foydaliroq?"
+      options:
+        - "\"Sen dunyodagi eng buyuk dahosan.\""
+        - "\"Siz talabani universitetga kirish imtihoniga tayyorlayotgan fizika repetitorisiz.\""
+      answer: 1
+      explain: "Aniq rol modelga daraja, maqsad va o'quvchi kimligini bildiradi."
+    keep: |-
+      Siz [aniq rol]siz va [kimga] [nimada] yordam beryapsiz.
+      [Vazifa]
+
+  - id: control-format
+    module: basics
+    title: "Formatni o'zingiz belgilang"
+    idea: "Nimani istamasligingizni sanash o'rniga, qanday natija kerakligini tasvirlang. \"Ikkita qisqa xatboshida javob bering\" degan gap \"ko'p yozma, ro'yxat kerak emas\" deganidan yaxshiroq ishlaydi."
+    weak: "Python bilan JavaScript'ni solishtir. Uzun matn yozma, ro'yxat ishlatma."
+    better: |-
+      Birinchi dasturlash tilini tanlayotgan boshlovchi uchun Python va JavaScript'ni solishtiring.
+      Javobni uch ustunli jadval ko'rinishida bering: Mezon, Python, JavaScript.
+      Besh qator bo'lsin: o'rganish qiyinligi, odatda qayerda ishlatiladi, mehnat bozori, kerakli vositalar, birinchi loyiha g'oyasi.
+      Jadvaldan keyin ikki gapda o'z tavsiyangizni bering.
+    why: "Format ijobiy tasvirlanganda modelning oldida bitta aniq nishon qoladi."
+    check:
+      q: "Sizga oddiy xatboshilar kerak. Qaysi ko'rsatma yaxshiroq ishlaydi?"
+      options:
+        - "\"To'liq gaplardan iborat ravon xatboshilar bilan yozing.\""
+        - "\"Markdown ishlatmang.\""
+      answer: 0
+      explain: "Modelga nima qilish kerakligini ayting. Bu nimadan qochishni aytishdan ko'ra tushunarliroq."
+    keep: |-
+      Javobni [jadval / raqamlangan ro'yxat / N ta xatboshi / JSON] ko'rinishida bering.
+      Aynan shular bo'lsin: [qismlar yoki ustunlar].
+      Hajmi [hajm]dan oshmasin.
+
+  - id: let-it-think
+    module: thinking
+    title: "Avval o'ylab olishiga imkon bering"
+    idea: "Matematika, mantiq, rejalashtirish yoki har qanday ko'p bosqichli masalada modeldan yakuniy javobni berishdan oldin qadam-baqadam mulohaza yuritishni, so'ng o'z ishini tekshirib chiqishni so'rang. Avval mulohaza yuritilsa, xatolar ko'zga tashlanadi va kamayadi."
+    weak: "Poyezd 14:20 da jo'nab, 7 daqiqalik ikkita to'xtash bilan 17:05 da yetib keldi. U qancha vaqt yurgan? Faqat javobini ayt."
+    better: |-
+      Poyezd 14:20 da jo'nab, 17:05 da yetib keldi. Yo'lda har biri 7 daqiqadan ikki marta to'xtadi. U aslida qancha vaqt harakatda bo'lgan?
+      Masalani qadam-baqadam yechib chiqing, keyin yakuniy javobni alohida qatorda yozing.
+      Tugatishdan oldin hisob-kitobni yana bir bor tekshiring.
+    why: "Har bir qadamni kuzatib borishingiz mumkin, o'zini tekshirish esa xatolarni sizga yetib kelmasidan ushlaydi."
+    check:
+      q: "Qadam-baqadam mulohazani qachon so'rash arziydi?"
+      options:
+        - "Oddiy faktlar uchun, masalan, poytaxt nomi."
+        - "Bir necha bosqichli masalalar uchun, masalan, hisob-kitob yoki reja."
+      answer: 1
+      explain: "Oddiy ma'lumot so'rashda bunga hojat yo'q. Ko'p bosqichli masalalarda esa kerak."
+    keep: |-
+      [Masala]
+      Buni qadam-baqadam o'ylab chiqing.
+      Keyin yakuniy javobni alohida qatorda yozing.
+      Tugatishdan oldin natijangizni tekshiring.
+
+  - id: ask-for-disagreement
+    module: thinking
+    title: "E'tiroz bildirishini so'rang"
+    idea: "Modellar siz ishonayotgandek ko'ringan fikrga qo'shilishga moyil. \"G'oyam yaxshimi?\" deb so'rasangiz, odatda \"ha\" degan javobni eshitasiz. Buning o'rniga eng kuchli tanqidni so'rang va qaysi variant sizga yoqishini oshkor qilmang."
+    weak: "Menimcha, startap g'oyam zo'r. Sen ham shunday deb o'ylaysanmi?"
+    better: |-
+      Mana bir startap g'oyasi: [g'oyani o'zingizniki ekanini aytmasdan tasvirlang].
+      O'zingizni shubha bilan qaraydigan investor o'rniga qo'ying. Bu g'oya barbod bo'lishi mumkin bo'lgan uchta eng kuchli sababni jiddiylik darajasi bo'yicha tartiblab bering.
+      Keyin har biri bo'yicha qanday dalil fikringizni o'zgartirishini ayting.
+    why: "Modeldan muammo topish so'ralgan va u qaysi javob sizga yoqishini bilmaydi."
+    check:
+      q: "Qaysi savolga halolroq javob olasiz?"
+      options:
+        - "\"Bu rejaning eng zaif joylari qaysi?\""
+        - "\"Bu reja puxta, to'g'rimi?\""
+      answer: 0
+      explain: "Javobga yetaklovchi savollar ma'qullash olib keladi. Betaraf yoki tanqidiy savollar esa ma'lumot beradi."
+    keep: |-
+      Mana [g'oya / reja / qoralama]: [shu yerga qo'ying]
+      Eng kuchli uchta e'tirozni ayting, eng jiddiysidan boshlang.
+      Ularni yumshatmang. Keyin har birini qanday tuzatish mumkinligini taklif qiling.
+
+  - id: verify-answers
+    module: thinking
+    title: "Javobga ishonishdan oldin tekshiring"
+    idea: "Model noto'g'ri faktni to'liq ishonch bilan aytishi mumkin. Unga \"bilmayman\" deyishga ruxsat bering, har bir da'vo qayerdan olinganini so'rang va muhim narsalarni o'zingiz tekshiring: birinchi navbatda raqamlar, sanalar, iqtiboslar va manbalarni."
+    weak: "O'zbekistonda internetdan foydalanish haqida beshta statistik ma'lumotni manbalari bilan ber."
+    better: |-
+      Faqat quyida keltirilgan hisobotga tayanib, internetdan foydalanishga oid statistik ma'lumotlarni sanab bering.
+      Har biri uchun u olingan gapni aynan o'zidek keltiring.
+      Agar hisobotda biror narsa bo'lmasa, taxmin qilmasdan "hisobotda yo'q" deb yozing.
+
+      <report>
+      [hisobotni shu yerga qo'ying]
+      </report>
+    why: "Model siz bergan material asosida ishlaydi, dalilini ko'rsatadi va bo'shliqni tan olishning xavfsiz yo'liga ega."
+    check:
+      q: "Model sizga ilmiy maqolaga havola berdi. Nima qilish kerak?"
+      options:
+        - "Ishlatavering. Havolalar har doim haqiqiy bo'ladi."
+        - "Iqtibos keltirishdan oldin maqolani o'zingiz topib ko'ring."
+      answer: 1
+      explain: "To'qib chiqarilgan manbalar — hammaga ma'lum nuqson. Ularni har doim tekshiring."
+    keep: |-
+      Faqat quyidagi materialga tayanib javob bering.
+      Har bir da'voni tasdiqlaydigan gapni iqtibos qilib keltiring.
+      Agar javob materialda bo'lmasa, shuni ayting. Taxmin qilmang.
+
+      <material>
+      [shu yerga qo'ying]
+      </material>
+
+  - id: long-documents
+    module: thinking
+    title: "Uzun hujjatlar bilan ishlash"
+    idea: "Material uzun bo'lsa, avval hujjatni, oxirida esa savolingizni qo'ying. Hujjatlar bir nechta bo'lsa, har birini nomi ko'rsatilgan alohida tegga o'rang. Avval tegishli iqtiboslarni so'rasangiz, javob matndan uzoqlashib ketmaydi."
+    weak: "Asosiy xavflar qaysi? [avval savol, undan keyin yigirma sahifa matn qo'yilgan]"
+    better: |-
+      <document name="project_plan">
+      [1-hujjatni shu yerga qo'ying]
+      </document>
+      <document name="budget">
+      [2-hujjatni shu yerga qo'ying]
+      </document>
+
+      Avval ikkala hujjatdan xavflar tilga olingan parchalarni iqtibos qilib keltiring.
+      Keyin faqat shu iqtiboslarga tayanib, uchta asosiy xavfni va har biri qaysi hujjatdan olinganini sanab bering.
+    why: "Savol javobdan bevosita oldin turadi, iqtiboslar esa modelni matndan chetga chiqib ketishdan saqlaydi."
+    check:
+      q: "Uzun hujjat promptning qayerida turishi kerak?"
+      options:
+        - "Boshida, savol esa undan keyin."
+        - "Eng oxirida, barcha ko'rsatmalardan keyin."
+      answer: 0
+      explain: "Avval material, oxirida savol — uzun matnlarda shu tartib yaxshiroq javob beradi."
+    keep: |-
+      <document name="[nom]">
+      [shu yerga qo'ying]
+      </document>
+
+      Avval mana bu savolga tegishli qismlarni iqtibos qilib keltiring: [savol].
+      Keyin faqat shu iqtiboslarga tayanib javob bering.
+
+  - id: iterate
+    module: thinking
+    title: "Birinchi promptni qoralama deb biling"
+    idea: "Yaxshi promptlar kamdan-kam hollarda bir urinishda yoziladi. Javobni o'qing, nimasi noto'g'ri ekanini ayting va nimani o'zgartirish kerakligini ko'rsating. Shuningdek, modeldan promptingizni yaxshilashni yoki ishni boshlashdan oldin sizga savollar berishni so'rashingiz mumkin."
+    weak: "Yo'q, yomon chiqdi. Qaytadan urinib ko'r."
+    better: |-
+      Deyarli o'xshadi. Tuzilishini saqlang, lekin:
+      1. Kirish qismini ikki barobar qisqartiring.
+      2. Ikkinchi misolni futbol haqidagi misolga almashtiring.
+      3. Soddaroq so'zlar ishlating: men buni 14 yoshli bolaga tushuntiryapman.
+    why: "Aniq fikr-mulohaza modelga qaysi qismlarni saqlab, qaysilarini o'zgartirish kerakligini bildiradi."
+    check:
+      q: "Javob 70% to'g'ri. Eng tez yo'l qaysi?"
+      options:
+        - "Yangi chat ochib, yaxshiroq natija chiqishiga umid qilish."
+        - "Nimani saqlash va nimani o'zgartirish kerakligini aniq aytish."
+      answer: 1
+      explain: "Aniq yo'naltirilgan tuzatishlar noldan boshlashga qaraganda tezroq natijaga olib keladi."
+    keep: |-
+      Boshlashdan oldin tushunarsiz joylar bo'yicha menga beshtagacha savol bering.
+      ---
+      [Yaxshi chiqqan qism]ni saqlang. [Tuzatilishi kerak bo'lgan narsa]ni o'zgartiring, chunki [sabab].
+
+  - id: brief-an-agent
+    module: agents
+    title: "Ishni agentga topshirish"
+    idea: "Agent (Claude Code, ChatGPT'ning agent rejimi va shunga o'xshash vositalar) sizning ishtirokingizsiz ko'p qadam bajaradi. Unga savol emas, to'liq topshiriq kerak: maqsad, \"tayyor\" degani nimani anglatishi, nimaga tegmasligi kerakligi hamda qachon to'xtab, sizdan so'rashi lozimligi."
+    weak: "Saytimni yaxshiroq qil."
+    better: |-
+      Maqsad: shu papkadagi shaxsiy saytimga tungi rejimni yoqib-o'chiradigan tugma qo'shish.
+      Tayyor degani: sarlavha qismidagi tugma mavzuni almashtiradi, tanlov sahifa qayta yuklangandan keyin ham saqlanib qoladi va ikkala mavzuda ham matn bemalol o'qiladi.
+      Cheklovlar: faqat oddiy CSS va JavaScript, yangi kutubxonalarsiz. Sahifa kontentini o'zgartirmang.
+      Tahrirlashdan oldin rejangizni bir necha qatorda ayting. Biror narsa tushunarsiz bo'lsa, taxmin qilmasdan so'rang.
+      Tugatgach, qaysi fayllarni o'zgartirganingizni va qanday sinab ko'rganingizni sanab bering.
+    why: "Agent maqsadni, chegaralarni va ishi qanday baholanishini biladi, shuning uchun yo'ldan adashmasdan mustaqil ishlay oladi."
+    check:
+      q: "Agentga beriladigan topshiriqning qaysi qismi eng ko'p unutiladi?"
+      options:
+        - "\"Tayyor\" degani nima ekanining aniq ta'rifi."
+        - "Salomlashish."
+      answer: 0
+      explain: "Marra belgilanmasa, agent yo juda erta to'xtaydi, yo to'xtamasdan o'zgartirishda davom etaveradi."
+    keep: |-
+      Maqsad: [nimaga erishish kerak va nima uchun]
+      Tayyor degani: [ish to'g'ri bajarilganini isbotlaydigan tekshiruvlar]
+      Cheklovlar: [tegish mumkin bo'lmagan vositalar, fayllar yoki amallar]
+      Bundan oldin mendan so'rang: [xavfli yoki ortga qaytarib bo'lmaydigan qadamlar]
+      Hisobot: [oxirida menga nimalarni aytish kerak]
+
+  - id: prompts-for-code
+    module: agents
+    title: "Kod uchun promptlar"
+    idea: "Kod haqida so'raganda yaxshi xato hisoboti (bug report) beradigan ma'lumotlarni bering: nimani kutgansiz, nima sodir bo'ldi, xatoning aniq matni va uni qanday takrorlash mumkin. Tuzatishdan oldin sababini so'rang, shuningdek, faqat testdan o'tkazib yuboradigan emas, umumiy yechimni talab qiling."
+    weak: "Kodim ishlamayapti. Tuzatib ber."
+    better: |-
+      Bu Python funksiyasi ro'yxatning o'rtacha qiymatini qaytarishi kerak, lekin bo'sh ro'yxatda xato berib to'xtab qolyapti.
+
+      Kutilgan: average([]) 0 qaytaradi.
+      Amalda: ZeroDivisionError: division by zero.
+
+      <code>
+      def average(nums):
+          return sum(nums) / len(nums)
+      </code>
+
+      Avval sababini bir-ikki gapda tushuntiring. Keyin eng kichik tuzatishni va bo'sh ro'yxat holati uchun test bering.
+      Ishlab turgan kodni qayta yozmang.
+    why: "Kutilgan va amaldagi natija to'g'ridan-to'g'ri xatoga ishora qiladi, \"eng kichik tuzatish\" degan talab esa keraksiz qayta yozishning oldini oladi."
+    check:
+      q: "Xatoni qidirish uchun yozilgan promptda har doim nima bo'lishi kerak?"
+      options:
+        - "Xato xabarining aniq matni va uning o'rniga nimani kutganingiz."
+        - "Xatoni tuzatish shoshilinch ekani haqidagi eslatma."
+      answer: 0
+      explain: "Xato matni va kutilgan natija — eng foydali ikkita ma'lumot."
+    keep: |-
+      Til va versiya: [masalan, Python 3.12]
+      Kutilgan: [nima bo'lishi kerak]
+      Amalda: [nima bo'lyapti, xatoning aniq matni bilan]
+      Takrorlash qadamlari: [qanday qilib]
+
+      <code>
+      [kodning tegishli qismini shu yerga qo'ying]
+      </code>
+
+      Avval sababini tushuntiring, keyin eng kichik tuzatishni va test bering.
+
+  - id: custom-instructions
+    module: agents
+    title: "Sizni eslab qoladigan qilib sozlang"
+    idea: "Agar har bir chatda o'zingiz haqingizdagi bir xil ma'lumotni takrorlayotgan bo'lsangiz, uni bir marta saqlab qo'ying. ChatGPT'da maxsus ko'rsatmalar (custom instructions) va xotira bor; Claude'da esa loyihalar, uslublar va profil sozlamalari. Ikkita qisqa eslatma yozing: kimsiz va javoblar qanday bo'lishini yoqtirasiz."
+    weak: "(Har bir yangi chatda \"Men kompyuter fanlari yo'nalishining 2-kurs talabasiman, sodda javob ber\" deb yozish.)"
+    better: |-
+      Men haqimda: Toshkentda kompyuter fanlari yo'nalishining 2-kurs talabasiman. Python'ni yaxshi bilaman, C++ va algoritmlarni o'rganyapman. Ingliz, o'zbek va rus tillarida o'qiy olaman.
+
+      Qanday javob berish kerak: to'g'ridan-to'g'ri javobdan boshlang. Qisqa xatboshilar bilan yozing. Kodni nazariyadan oldin ko'rsating. Xato qilsam, buni ochiq ayting. Biror faktga ishonchingiz komil bo'lmasa, shuni ayting.
+    why: "Har bir yangi chat sizning kontekstingiz bilan boshlanadi, shuning uchun qisqa promptlarga ham shaxsan sizga mos javob keladi."
+    check:
+      q: "Saqlangan ko'rsatmalarga nima yoziladi?"
+      options:
+        - "O'zingiz haqingizdagi o'zgarmas ma'lumotlar va sizga ma'qul javob uslubi."
+        - "Bugungi uy vazifasining to'liq matni."
+      answer: 0
+      explain: "Oylar davomida o'zgarmaydigan narsani saqlang. Vazifa tafsilotlarini esa chatning o'ziga yozing."
+    keep: |-
+      Men haqimda: [rol, daraja, soha, tillar]
+      Maqsadlarim: [nimaga intilyapsiz]
+      Qanday javob berish kerak: [hajm, ohang, format, ishonch komil bo'lmaganda nima qilish kerak]
+
+  - id: chain-prompts
+    module: advanced
+    title: "Katta ishni zanjirga bo'ling"
+    idea: "Katta ish uchun yozilgan bitta ulkan prompt har bir bosqichda o'rtacha natija beradi. Ishni qadamlarga bo'ling: har bir qadamda bitta vazifa bo'lsin va uning natijasi keyingi qadamga kirish bo'lib xizmat qilsin. Qadamlar orasida natijani ko'rib chiqib, tuzatishingiz mumkin, shunda boshdagi xato keyingi hamma narsani buzmaydi."
+    weak: "O'zbekistondagi elektromobillarni o'rganib chiq va menga xulosalari bilan to'liq hisobot yozib ber."
+    better: |-
+      Bu ishni to'rt qadamda bajaramiz. Hozir faqat 1-qadamni bajaring va javobimni kuting.
+
+      1-qadam: O'zbekistondagi elektromobillar haqidagi yaxshi hisobot javob berishi shart bo'lgan o'nta savolni sanab bering.
+      2-qadam: men ma'qullagan har bir savol bo'yicha faktlarni manbalari bilan to'plang.
+      3-qadam: shu faktlar asosida reja tuzing.
+      4-qadam: reja bo'yicha hisobotni yozing.
+    why: "Har bir qadam yaxshi bajarish uchun yetarlicha kichik, keyingisiga kuch sarflanishidan oldin esa yo'nalishni siz ma'qullaysiz."
+    check:
+      q: "Zanjirning bitta uzun promptdan asosiy afzalligi nimada?"
+      options:
+        - "Har bir bosqichni keyingisi unga tayanmasidan oldin tekshirib, tuzatish mumkin."
+        - "Unda har doim kamroq so'z ishlatiladi."
+      answer: 0
+      explain: "Zanjir sizga nazorat nuqtalarini beradi. Xatolar paydo bo'lgan joyidayoq ushlanadi."
+    keep: |-
+      Bu ishni qadamma-qadam bajaramiz. Hozir faqat 1-qadamni bajaring, keyin to'xtab, kuting.
+
+      1-qadam: [birinchi kichik vazifa]
+      2-qadam: [1-qadam natijasidan foydalanadi]
+      3-qadam: [2-qadam natijasidan foydalanadi]
+
+      Har bir qadamdan keyin natijani ko'rsating va davom etish-etmaslikni so'rang.
+
+  - id: spec-first
+    module: advanced
+    title: "Koddan oldin spetsifikatsiya yozing"
+    idea: "Bir qatorli g'oyadan kod yozishni boshlagan agent har bir bo'shliqni o'z taxminlari bilan to'ldiradi. Avval u sizdan savol-javob qilib olsin va qisqa spetsifikatsiya yozsin: dastur nima qiladi, nima qilmaydi va ishlayotganini qanday bilasiz. Spetsifikatsiyani o'qib, tuzating. Shundan keyingina qurishga ruxsat bering."
+    weak: "Menga vazifalar ro'yxati (to-do) ilovasini yasab ber."
+    better: |-
+      Menga vazifalar ro'yxati (to-do) ilovasi kerak. Hozircha kod yozmang.
+      Avval foydalanuvchilar, funksiyalar va nimalar doiradan tashqarida ekanini tushunib olguningizcha menga bittadan savol bering.
+      Keyin bir sahifali spetsifikatsiya yozing: maqsad, funksiyalar, nimalar kirmaydi, qanday ma'lumot saqlanadi va ilova ishlayotganini isbotlaydigan beshta tekshiruv.
+      Kod yozishdan oldin spetsifikatsiyani ma'qullashimni kuting.
+    why: "Spetsifikatsiyadagi bitta gapni tuzatish bir necha soniya oladi. Xuddi shu anglashilmovchilikni tayyor kodda tuzatish esa soatlab vaqt oladi."
+    check:
+      q: "Anglashilmovchilikni tuzatishning eng arzon payti qachon?"
+      options:
+        - "Kod tayyor bo'lgandan keyin."
+        - "Spetsifikatsiyada, hali hech qanday kod yozilmasidan oldin."
+      answer: 1
+      explain: "Avval rejani so'z bilan kelishib oling. Kodni qayta yozish qimmatga tushadi."
+    keep: |-
+      Men [g'oya]ni yasamoqchiman. Hozircha kod yozmang.
+      1. Talablar aniq bo'lguncha menga bittadan savol bering.
+      2. Qisqa spetsifikatsiya yozing: maqsad, funksiyalar, doiradan tashqaridagi narsalar, ishlayotganini isbotlaydigan tekshiruvlar.
+      3. Ma'qullashimni kuting.
+      4. Keyin uni qadam-baqadam amalga oshiring va har bir qadamni spetsifikatsiya bilan solishtirib tekshiring.
+
+  - id: keep-state
+    module: advanced
+    title: "Uzoq davom etadigan ishda holatni saqlang"
+    idea: "Uzoq davom etadigan ish bitta sessiyaga sig'maydi, yangi sessiya esa hech narsani eslamaydi. Agent o'z xotirasini fayllarda saqlasin: nima bajarilgani va navbatda nima turgani yozilgan qaydlar, vazifalar ro'yxati hamda nima ishlayotganini ko'rsatadigan testlar. Yangi sessiya shularni o'qishdan boshlanadi."
+    weak: "Kechagi ishimizni davom ettir."
+    better: |-
+      Bu ish bir necha sessiya davom etadi. progress.md nomli fayl yuriting va har bir tugallangan qadamdan keyin uni yangilang: nima bajarildi, navbatda nima turibdi, qanday qarorlar qabul qilindi va nega, qanday muammolar ma'lum.
+      Har bir qadamdan keyin ishlab turgan kodni commit qiling.
+      Har bir sessiya boshida progress.md faylini va so'nggi commit'lar tarixini o'qing, qayerda turganimizni uch qatorda ayting, so'ng davom eting.
+    why: "Xotirani fayllar saqlaydi, shuning uchun hech narsa chat tarixi saqlanib qolishiga bog'liq emas."
+    check:
+      q: "Yangi sessiya boshlandi. Agent birinchi navbatda nima qilishi kerak?"
+      options:
+        - "Bajarilgan ishlar haqidagi qaydlarni va so'nggi o'zgarishlarni o'qishi."
+        - "Ehtiyot shart hammasini boshidan boshlashi."
+      answer: 0
+      explain: "Yozib qo'yilgan holat ishni aynan to'xtagan joyidan davom ettirish imkonini beradi."
+    keep: |-
+      Ish jarayoni yoziladigan fayl yuriting va uni har bir qadamdan keyin yangilang:
+      - Bajarildi: [tugallangan qadamlar]
+      - Navbatda: [keyingi qadam]
+      - Qarorlar: [nima qaror qilindi va nega]
+      - Muammolar: [ochiq masalalar]
+      Har bir sessiya boshida avval shu faylni o'qing va qayerda turganimizni qisqacha ayting.
+
+  - id: research-hypotheses
+    module: advanced
+    title: "Raqobatlashuvchi farazlar bilan tadqiq qiling"
+    idea: "Biror savolni o'rganish so'ralganda, model odatda birinchi ishonarli javobni topib, shu yerda to'xtaydi. Undan bir vaqtning o'zida bir nechta ehtimoliy izohni ko'rib chiqishni, har biri uchun ham tasdiqlovchi, ham inkor etuvchi dalil izlashni, qanchalik ishonchi borligini aytishni va muhim da'volarni bittadan ortiq manbada tekshirishni so'rang."
+    weak: "O'tgan oy ilovamiz foydalanuvchilari soni nega kamayib ketdi?"
+    better: |-
+      O'tgan oy ilovamizning kunlik foydalanuvchilari 20% ga kamaydi. Ma'lumotlar ilova qilingan.
+      Kamida to'rtta ehtimoliy izohni sanab bering.
+      Har biri uchun: ma'lumotlardagi qanday dalil uni tasdiqlagan bo'lardi, qandayi inkor etgan bo'lardi va amalda nimani topdingiz.
+      Har biriga ishonch darajasini (past, o'rta, yuqori) qo'ying va qanday qo'shimcha ma'lumot masalani hal qilishini ayting.
+      Dalillar aniq bo'lmasa, g'olibni tanlamang.
+    why: "Bir nechta faraz modelni birinchi uchragan talqinga yopishib olishdan saqlaydi, ishonch darajalari esa javobning qayeri zaif ekanini ko'rsatadi."
+    check:
+      q: "Nega har bir izohga qarshi dalillarni ham so'rash kerak?"
+      options:
+        - "Bu modelni faqat birinchi kelgan fikrini tasdiqlashdan to'xtatadi."
+        - "Javob uzunroq va ta'sirchanroq chiqadi."
+      answer: 0
+      explain: "Inkor etuvchi dalillarni izlash — halol tadqiqotning o'zagi."
+    keep: |-
+      Savol: [nimani aniqlamoqchisiz]
+      1. Bir nechta ehtimoliy javob yoki izohni sanab bering.
+      2. Har biri uchun: tasdiqlovchi dalillar, qarshi dalillar, ishonch darajasi (past / o'rta / yuqori).
+      3. Asosiy faktlarni kamida ikkita mustaqil manbada tekshiring va manbalarni ko'rsating.
+      4. Nima hali noma'lumligini va uni nima hal qilishini ayting.
+
+  - id: recurring-job
+    module: advanced
+    title: "Takrorlanadigan vazifani qayta ishlatiladigan ishga aylantiring"
+    idea: "Agar har kuni yoki har hafta bir xil narsani so'rasangiz, uni bir marta ish sifatida yozib qo'ying: o'zgarmas manbalar, o'zgarmas format, nima xabar berishga arzishini belgilaydigan qoida va hech narsa o'zgarmaganini aytishga ruxsat. Avval uni qo'lda ishga tushirib ko'ring, natija to'g'ri chiqqach esa jadval bo'yicha ishlaydigan qilib qo'ying."
+    weak: "Bugun AI sohasida nima yangilik?"
+    better: |-
+      Kundalik brifing ishi.
+      Manbalar: [o'zingiz ishonadigan uchta sayt yoki lenta].
+      Faqat so'nggi 24 soatdagi [mavzularingiz] haqidagi yangiliklarni xabar qiling.
+      Format: ko'pi bilan beshta band. Har biri uchun: bir gapli xulosa, kompyuter ko'rishi (computer vision) muhandisi uchun nega muhimligi va havola.
+      Muhim hech narsa bo'lmagan bo'lsa, "Bugun muhim yangilik yo'q" deb yozing va to'xtang. Ro'yxatni sun'iy to'ldirmang.
+    why: "Bir xil prompt har kuni solishtirsa bo'ladigan natija beradi, yangiliksiz kunlar uchun qoida esa brifingni halol saqlaydi."
+    check:
+      q: "Hech narsa sodir bo'lmagan kunlar uchun qoida nega kerak?"
+      options:
+        - "Usiz model ro'yxatni ahamiyatsiz bandlar bilan to'ldiradi."
+        - "U promptni qisqartiradi."
+      answer: 0
+      explain: "Beshta band so'ralgan model odatda beshta band chiqaradi. Unga kamroq qaytarishga ruxsat bering."
+    keep: |-
+      Ish: [nomi], [har kuni / har hafta] ishga tushadi.
+      Manbalar: [qayerdan qidirish kerak]
+      Faqat shularni kiriting: [nima tegishli hisoblanadi va qaysi vaqt oralig'i]
+      Format: [bandlar soni, har biridagi maydonlar]
+      O'tgan safargisi bilan solishtiring: [nima o'zgardi]
+      Yangilik bo'lmasa, shuni ayting va to'xtang.
+
+  - id: numbers-and-scenarios
+    module: advanced
+    title: "Raqamlarni ssenariylar bilan tahlil qiling"
+    idea: "Raqamlar ishtirok etgan har qanday savolda haqiqiy ko'rsatkichlarni bering va bittadan ortiq javob so'rang: kutilayotgan, yaxshiroq va yomonroq holat, har bir taxmin esa alohida sanab o'tilsin. Keyin hisob-kitobni ko'rsatishini so'rang va bitta qatorni qo'lda tekshirib ko'ring."
+    weak: "Chet elda o'qishga pulim yetadimi?"
+    better: |-
+      Mening ma'lumotlarim: jamg'arma 4 000 USD, daromad oyiga 300 USD, o'qish to'lovi yiliga 6 000 USD, yashash xarajatlari oyiga taxminan 700 USD, o'qish to'lovining yarmini qoplaydigan stipendiya olish ehtimoli bor.
+      12 oylik byudjetni uchta ssenariyda tuzing: kutilayotgan, yaxshiroq, yomonroq.
+      Har bir taxminni alohida jadvalda sanab bering, toki ularni o'zgartira olay.
+      Har bir ssenariy uchun pul qaysi oyda tugashini ayting (agar tugasa).
+      Kutilayotgan holat uchun hisob-kitobni qadam-baqadam ko'rsating.
+    why: "Uchta ssenariy bitta soxta aniq raqam o'rniga oraliqni ko'rsatadi, ko'rinib turgan taxminlarni esa shubha ostiga olish va o'zgartirish mumkin."
+    check:
+      q: "Nega taxminlarni alohida jadvalda so'rash kerak?"
+      options:
+        - "Natija nimaga bog'liq ekanini ko'rish va o'zgartira olish uchun."
+        - "Javob professionalroq ko'rinishi uchun."
+      answer: 0
+      explain: "Prognoz o'z taxminlari qanchalik to'g'ri bo'lsa, shunchalik yaxshi. Ularni qo'l yetadigan joyda saqlang."
+    keep: |-
+      Mening raqamlarim: [haqiqiy ko'rsatkichlar yoki ilova qilingan fayl]
+      Savol: [nimani bilmoqchisiz]
+      Uchta ssenariy tuzing: kutilayotgan, yaxshiroq, yomonroq.
+      Har bir taxminni alohida sanab bering.
+      Kutilayotgan holat uchun hisob-kitobni ko'rsating, toki tekshira olay.
+
+  - id: sources-to-slides
+    module: advanced
+    title: "Manbalardan taqdimotgacha"
+    idea: "Yaxshi taqdimot — faktlar uyumi emas, balki dalillangan fikr. Uni tartib bilan quring: avval yagona asosiy fikr, keyin har bir slaydda bitta fikr bo'lgan hikoya chizig'i, undan so'ng har biri manbalaringizdagi dalillarga tayangan slaydlar. Birorta slayd yozilmasidan oldin hikoyani belgilab oling."
+    weak: "Mana bu maqolalardan qayta tiklanuvchi energiya haqida taqdimot qilib ber."
+    better: |-
+      <sources>
+      [maqolalar yoki qaydlarni shu yerga qo'ying]
+      </sources>
+
+      Auditoriya: universitetdagi guruhim, 10 daqiqa, ular asoslarni biladi.
+      1-qadam: auditoriya eslab qolishi kerak bo'lgan bitta gapni taklif qiling.
+      2-qadam: yetti slayddan iborat hikoya chizig'ini yozing. Har bir slayd sarlavhasi shu slayddagi fikrni ifodalaydigan to'liq gap bo'lsin.
+      Shu yerda to'xtang va ma'qullashimni kuting.
+      3-qadam: har bir slayd uchun uchta qisqa band, har bir faktning manbasi va taxminan 60 so'zli ma'ruzachi qaydlarini bering.
+    why: "Fikrni ifodalaydigan sarlavhalar aniq mantiq qurishga majbur qiladi, hikoya chizig'ini oldindan ma'qullash esa har bir slaydni qayta yozishdan qutqaradi."
+    check:
+      q: "Qaysi slayd sarlavhasi kuchliroq?"
+      options:
+        - "\"Quyosh energiyasi\""
+        - "\"Quyosh energiyasi hozir aksariyat mamlakatlarda eng arzon yangi elektr manbai\""
+      answer: 1
+      explain: "Fikrni ifodalaydigan sarlavha auditoriyaga qanday xulosa chiqarish kerakligini aytadi."
+    keep: |-
+      Auditoriya: [kim, qancha vaqt, ular nimani allaqachon biladi]
+      1. Eslab qolinishi kerak bo'lgan bitta asosiy fikrni taklif qiling.
+      2. Hikoya chizig'ini yozing: har bir slaydga to'liq gapdan iborat bitta sarlavha.
+      3. Ma'qullashimni kuting.
+      4. Har bir slayd uchun: bandlar, har bir faktning manbasi, ma'ruzachi qaydlari.
+
+  - id: consistent-voice
+    module: advanced
+    title: "Ko'p matnda yagona ovozni saqlang"
+    idea: "O'zingizga yoki loyihangizga xos ohangdagi ko'plab matnlar kerak bo'lsa, uslubni xotiradan tasvirlamang. Haqiqiy namunalar bering, modeldan ovoz qoidalarini qisqa qo'llanmaga jamlashni so'rang, qo'llanmani tuzating va keyin uni har bir so'rovda qayta ishlating."
+    weak: "Telegram kanalim uchun mening uslubimda o'nta post yoz."
+    better: |-
+      <samples>
+      [haqiqiy postlaringizdan beshtasini shu yerga qo'ying]
+      </samples>
+
+      1-qadam: namunalarni o'rganib chiqing va ovoz qo'llanmasini yozing: gap uzunligi, o'ziga xos so'zlar, men hech qachon nima qilmasligim, postni qanday boshlab, qanday tugatishim. Ko'pi bilan o'nta qoida, har biriga namunalardan misol.
+      Tuzatishlarimni kuting.
+      2-qadam: tuzatilgan qo'llanma asosida [mavzular] haqida uchta post yozing. Har biridan keyin unda eng yaqqol ko'ringan ikkita qoidani ayting.
+    why: "Qo'llanma noaniq tuyg'uni tekshirsa, tuzatsa va qayta ishlatsa bo'ladigan aniq qoidalarga aylantiradi."
+    check:
+      q: "Ovoz qo'llanmasi uchun eng yaxshi manba nima?"
+      options:
+        - "\"Do'stona va professional\" kabi sifatlar."
+        - "Siz o'xshatmoqchi bo'lgan matnlarning haqiqiy namunalari."
+      answer: 1
+      explain: "Namunalar ovozni ko'rsatadi. Sifatlar esa uni faqat nomlaydi."
+    keep: |-
+      <samples>
+      [3–5 ta haqiqiy namuna]
+      </samples>
+
+      1. Ko'pi bilan o'nta qoidadan iborat ovoz qo'llanmasini tuzing, har biriga misol keltiring.
+      2. Tuzatishlarimni kuting.
+      3. Qo'llanmaga amal qilib [nima] yozing.
+
+  - id: stay-in-control
+    module: advanced
+    title: "Agentingizni nazoratda tuting"
+    idea: "Vositalarga ega agent fayllarni o'chirishi, xabar yuborishi va pul sarflashi mumkin. Qaysi amallarni erkin bajarishi mumkinligini, qaysilari uchun esa sizning ruxsatingiz kerakligini ayting. Oddiy qoida yaxshi ishlaydi: ortga qaytarsa bo'ladigan har qanday amalga ruxsat, ortga qaytarib bo'lmaydigan yoki boshqa odamlar ko'radigan amaldan oldin esa avval so'rash kerak. Undan faqat so'ralgan ishni bajarishni so'rang."
+    weak: "Loyiha papkamni tozalab ber."
+    better: |-
+      Loyiha papkasini tartibga keltiring.
+      Erkin bajarishingiz mumkin: istalgan faylni o'qish, yangi papkalar yaratish va fayllarni loyiha ichida ko'chirish.
+      Bundan oldin mendan so'rang: biror narsani o'chirish, git kuzatayotgan fayllarni o'zgartirish yoki biror narsa o'rnatish.
+      Faqat men so'ragan ishni bajaring. Boshqa muammolarni payqasangiz, ularni tuzatmasdan, oxirida sanab bering.
+      Yakunda kiritgan har bir o'zgarishingiz ro'yxatini bering.
+    why: "Agent xavfsiz amallarni tez bajaradi, xavflilari esa har doim siz orqali o'tadi."
+    check:
+      q: "Agent qaysi amal haqida har doim avval so'rashi kerak?"
+      options:
+        - "Faylni o'qish."
+        - "Fayllarni o'chirish yoki boshqa odamlarga xabar yuborish."
+      answer: 1
+      explain: "Ortga qaytarib bo'lmaydigan va boshqa odamlar ko'radigan amallar uchun sizning ruxsatingiz kerak."
+    keep: |-
+      Erkin bajarishingiz mumkin: [xavfsiz, ortga qaytarsa bo'ladigan amallar]
+      Bundan oldin mendan so'rang: [o'chirish, yuborish, to'lash, e'lon qilish, o'rnatish]
+      Faqat men so'ragan ishni bajaring. Payqagan boshqa muammolaringizni sanab bering, lekin tuzatmang.
+      Oxirida kiritgan har bir o'zgarishingizni sanab bering.
+
+  - id: honest-code
+    module: advanced
+    title: "Testdan o'tadigan emas, haqiqiy yechim so'rang"
+    idea: "\"Testlar o'tsin\" deyilgan dasturlash agenti aynan shuni qilib, undan ortig'ini qilmasligi mumkin, masalan, faqat testda tekshirilgan kirish ma'lumotlarini hisobga oladi. Barcha to'g'ri kirish ma'lumotlarida ishlaydigan yechim so'rang, kod haqida biror narsa deyishdan oldin uni o'qib chiqishini ayting va testning o'zi noto'g'ri ko'rinsa, buni sizga aytishini so'rang."
+    weak: "Testlar o'tmayapti. O'tadigan qil."
+    better: |-
+      test_parser.py faylidagi uchta test o'tmayapti.
+      Javob berishdan oldin parser kodini va testlarni o'qib chiqing. Ochib ko'rmagan kodingiz haqida taxmin qilmang.
+      Haqiqiy sababni toping va uni shunday tuzatingki, parser faqat testda tekshirilganlarida emas, barcha to'g'ri kirish ma'lumotlarida ishlasin.
+      Testlar o'tishi uchun ularning o'zini tahrirlamang. Agar biror test noto'g'ri ko'rinsa, to'xtang va sababini tushuntiring.
+      Keyin barcha testlarni to'liq ishga tushiring va natijani aynan o'zidek, o'tmagan testlar bilan birga xabar qiling.
+    why: "Maqsad to'g'ri ishlash sifatida ifodalangan, shuning uchun faqat testlarni qanoatlantiradigan oson yo'llarga o'rin qolmaydi."
+    check:
+      q: "Agent \"hammasi tuzatildi\" dedi, lekin siz testlar ishga tushirilganini ko'rmadingiz. Nima deb so'raysiz?"
+      options:
+        - "\"Testlarni ishga tushiring va natijasini ko'rsating.\""
+        - "Hech narsa. Tuzatildi dedimi, demak tuzatilgan."
+      answer: 0
+      explain: "Dalil so'rang. \"Bajarildi\" degan gap test natijasi emas."
+    keep: |-
+      Javob berishdan oldin tegishli kodni o'qib chiqing. Taxmin qilmang.
+      Haqiqiy sababni shunday tuzatingki, kod faqat testda tekshirilganlarida emas, barcha to'g'ri kirish ma'lumotlarida ishlasin.
+      Testlarni o'zgartirmang. Agar biror test noto'g'ri ko'rinsa, menga ayting.
+      Testlarni ishga tushiring va natijani aynan o'zidek xabar qiling.
+
+  - id: system-prompt
+    module: advanced
+    title: "O'z botingiz uchun tizim promptini yozing"
+    idea: "Model ustiga bot yoki ilova qurayotganingizda tizim prompti (system prompt) uning lavozim yo'riqnomasi bo'ladi. Unda rolni, foydalanuvchilarni, bot nimalarni bilishi shartligini, qoidalarni sabablari bilan, javob formatini va javobni bilmaganda nima qilishini tasvirlang. Keyin uni haqiqiy savollarda, jumladan, g'arazli va mavzuga aloqasiz savollarda sinab ko'ring."
+    weak: "Sen do'konim uchun foydali yordamchisan."
+    better: |-
+      Siz Toshkentdagi onlayn kitob do'konining mijozlarni qo'llab-quvvatlash yordamchisisiz. Mijozlar o'zbek yoki rus tilida yozadi; ularning xabari qaysi tilda bo'lsa, shu tilda javob bering.
+
+      <knowledge>
+      [yetkazib berish shartlari, narxlar, qaytarish qoidalari]
+      </knowledge>
+
+      Qoidalar:
+      - Faqat yuqoridagi ma'lumotlarga tayanib javob bering. Agar javob u yerda bo'lmasa, savolni xodimga yetkazishingizni ayting, chunki narxlar haqidagi noto'g'ri javob bizni mijozlardan ayiradi.
+      - Javoblar to'rt gapdan oshmasin, chunki mijozlar ularni telefonda o'qiydi.
+      - Hech qachon karta raqamini so'ramang, chunki to'lov faqat saytda amalga oshiriladi.
+    why: "Bot o'z rolini, chegaralarini va har bir qoidaning sababini biladi, shuning uchun siz sanab o'tmagan holatlarda ham oqilona yo'l tutadi."
+    check:
+      q: "Tizim promptini yozib bo'lgach, nima qilish kerak?"
+      options:
+        - "Uni haqiqiy, qiyin va mavzuga aloqasiz savollarda sinab ko'rish."
+        - "Uni darhol ishga tushirib yuborish."
+      answer: 0
+      explain: "Tizim prompti qiyin holatlarda sinab ko'rilmaguncha qoralama bo'lib qoladi."
+    keep: |-
+      Siz [foydalanuvchilar] uchun [rol]siz. [Til va ohang.]
+
+      <knowledge>
+      [bot tayanishi mumkin bo'lgan faktlar]
+      </knowledge>
+
+      Qoidalar:
+      - [qoida], chunki [sabab].
+      - Agar javobni bilmasangiz, [nima qilish kerak].
+      Format: [javoblarning hajmi va tuzilishi]
+
+prompts:
+  - id: explain-three-levels
+    cat: study
+    title: "Uch darajada tushuntirish"
+    use: "Mavzu juda qiyin yoki juda mavhum tuyulganda."
+    text: |-
+      [mavzu]ni uch darajada tushuntiring:
+      1. 10 yoshli bolaga, uch gapda.
+      2. Yuqori sinf o'quvchisiga, kundalik hayotdan bitta misol bilan.
+      3. 1-kurs talabasiga, to'g'ri atamalar bilan.
+      Keyin hamma narsadan oldin tushunib olishim shart bo'lgan bitta g'oyani ayting.
+
+  - id: quiz-me
+    cat: study
+    title: "O'zlashtirgunimcha savol bering"
+    use: "Imtihon oldidan, bilimdagi bo'shliqlarni topish uchun."
+    text: |-
+      Men [fan / mavzu] bo'yicha imtihonga tayyorlanyapman.
+      Menga bittadan savol bering: osonidan boshlab, asta-sekin qiyinlashtirib boring.
+      Har bir javobimdan keyin to'g'ri yoki noto'g'riligini ayting, qisqacha tushuntiring va keyingi savolni bering.
+      O'nta savoldan keyin takrorlashim kerak bo'lgan mavzularni sanab bering.
+
+  - id: study-plan
+    cat: study
+    title: "O'qish rejasini tuzish"
+    use: "Muddat yaqin, material esa juda ko'p bo'lganda."
+    text: |-
+      [fan] bo'yicha [imtihon / topshirish muddati]gacha [son] kun qoldi.
+      Kuniga [soat] soat o'qiy olaman. Mavzular: [ro'yxat].
+      Eng sust bilgan mavzularim: [mavzular].
+      Kunma-kun rejani jadval ko'rinishida tuzing: kun, mavzular, vazifa, o'zimni qanday tekshiraman.
+      Oxirgi kunni faqat takrorlashga qoldiring.
+
+  - id: notes-to-summary
+    cat: study
+    title: "Tartibsiz konspektni xulosaga aylantirish"
+    use: "Ma'ruzadan keyin, konspekt tartibsiz bo'lganda."
+    text: |-
+      Quyida ma'ruzadan olgan xom konspektim bor. Uni shunday tartibga soling:
+      1. Besh gapdan iborat xulosa.
+      2. Asosiy atamalar va ularning bir qatorli ta'riflari.
+      3. Imtihonda tushishi mumkin bo'lgan uchta savol.
+      Konspektimda yo'q faktlarni qo'shmang. Tushunarsiz joylarni [?] bilan belgilang.
+
+      <notes>
+      [konspektni shu yerga qo'ying]
+      </notes>
+
+  - id: feynman-check
+    cat: study
+    title: "Tushunganimni tekshirish"
+    use: "Mavzuni tushundim deb o'ylaysiz va bunga ishonch hosil qilmoqchi bo'lganingizda."
+    text: |-
+      Men [mavzu]ni o'z so'zlarim bilan tushuntiraman. Siz qattiqqo'l, lekin adolatli o'qituvchi bo'ling.
+      Nima noto'g'ri, nima yetishmayotgani va nima noaniq ekanini ko'rsating.
+      To'liq to'g'ri tushuntirishni hozircha bermang. Xatoni o'zim tuzatishimga yordam beradigan ikkita savol bering.
+
+      Mening tushuntirishim:
+      [tushuntirishingizni yozing]
+
+  - id: explain-code
+    cat: coding
+    title: "Kodni tushuntirish"
+    use: "Sizga birovdan qolgan yoki ko'chirib olgan kodingizni tushunmayotganingizda."
+    text: |-
+      Bu kod nima qilishini [til] asoslarini biladigan odamga tushuntiring.
+      Avval ikki gapda umumiy tavsif bering. Keyin blokma-blok ko'rib chiqing.
+      G'ayrioddiy yoki xavfli joylarni ko'rsating.
+
+      <code>
+      [kodni shu yerga qo'ying]
+      </code>
+
+  - id: debug
+    cat: coding
+    title: "Xatoni topish"
+    use: "Kod xato berib to'xtaganda yoki noto'g'ri natija chiqarganda."
+    text: |-
+      Til va versiya: [masalan, Python 3.12]
+      Nimani kutgan edim: [kutilgan natija]
+      Nima bo'lyapti: [amaldagi natija va xato xabarining aniq matni]
+
+      <code>
+      [kodni shu yerga qo'ying]
+      </code>
+
+      Avval sababini tushuntiring. Keyin eng kichik tuzatishni bering. Ishlab turgan qismlarni qayta yozmang.
+
+  - id: code-review
+    cat: coding
+    title: "Kodimni ko'rib chiqish"
+    use: "Topshiriqni yoki pull request'ni yuborishdan oldin."
+    text: |-
+      Siz tajribali (senior) [til] dasturchisisiz va boshlovchi hamkasbingizning kodini ko'rib chiqyapsiz.
+      Quyidagilarni tekshiring: xatolar, chekka holatlar, tushunarsiz nomlar, takrorlangan kod va xavfsizlik muammolari.
+      Muammolarni muhimlik tartibida sanab bering. Har biri uchun qatorni va tavsiya etilgan tuzatishni ko'rsating.
+      Oxirida men yaxshi bajargan bitta narsani ayting.
+
+      <code>
+      [kodni shu yerga qo'ying]
+      </code>
+
+  - id: write-tests
+    cat: coding
+    title: "Test yozish"
+    use: "Funksiya bor, testlar esa yo'q bo'lganda."
+    text: |-
+      Quyidagi funksiya uchun [test freymvorki] yordamida unit testlar yozing.
+      Oddiy holatni, chekka holatlarni (bo'sh kirish, juda katta kirish, noto'g'ri turlar) va xato chiqishi kerak bo'lgan bitta holatni qamrab oling.
+      Har bir testga nimani tekshirishini bildiradigan nom bering. Funksiyaning o'zini o'zgartirmang.
+
+      <code>
+      [funksiyani shu yerga qo'ying]
+      </code>
+
+  - id: learn-by-project
+    cat: coding
+    title: "Texnologiyani loyiha orqali o'rganish"
+    use: "Yangi til yoki kutubxonani amalda biror narsa yasab o'rganmoqchi bo'lganingizda."
+    text: |-
+      Men [nimalarni allaqachon bilasiz]ni bilaman va [texnologiya]ni o'rganmoqchiman.
+      [vaqt] ichida tugatsa bo'ladigan va asosiy g'oyalarni o'rgatadigan bitta kichik loyiha o'ylab toping.
+      Uni besh qadamga bo'ling. Har bir qadam uchun nimani o'rganishimni va ishlayotganini qanday tekshirishimni ayting.
+      Kodni men uchun yozib bermang. Maslahatni faqat o'zim so'raganimda bering.
+
+  - id: improve-draft
+    cat: writing
+    title: "Qoralamani yaxshilash, uslubimni saqlash"
+    use: "Matn deyarli tayyor, lekin hali sayqallanmagan bo'lganda."
+    text: |-
+      Quyidagi matnni yaxshilang. Grammatikani tuzating, takrorlarni olib tashlang va tushunarsiz gaplarni aniqroq qiling.
+      Mening uslubim va fikrimni saqlang. Matnni aslidagidan rasmiyroq qilib yubormang.
+      Matndan keyin o'zingiz kiritgan eng muhim beshta o'zgarishni va ularning sababini sanab bering.
+
+      <text>
+      [matnni shu yerga qo'ying]
+      </text>
+
+  - id: formal-email
+    cat: writing
+    title: "Rasmiy xat yozish"
+    use: "O'qituvchiga, universitetga yoki ish beruvchiga yozayotganda."
+    text: |-
+      [kimga: masalan, professorimga] xushmuomala va qisqa elektron xat yozing.
+      Maqsad: [nimani so'rayapsiz yoki nima haqida xabar beryapsiz].
+      Kiritilishi kerak bo'lgan ma'lumotlar: [sanalar, ismlar, tafsilotlar].
+      Ohang: hurmat bilan, lekin quruq emas. 120 so'zdan kam. Xat mavzusini ham yozing.
+
+  - id: essay-outline
+    cat: writing
+    title: "Insho rejasini tuzish"
+    use: "Mavzu bor, lekin sahifa hali bo'm-bo'sh bo'lganda."
+    text: |-
+      Men mana bu mavzuda [hajm] so'zli insho yozishim kerak: [mavzu].
+      Mening pozitsiyam: [fikringiz yoki "hali qaror qilmadim"].
+      Menga reja tuzib bering: tezis gapi, har biriga bittadan dalil keltirilgan uchta asosiy fikr, bitta qarshi dalil va xulosa uchun g'oya.
+      Inshoning o'zini yozmang.
+
+  - id: shorten
+    cat: writing
+    title: "Qisqartirish"
+    use: "So'zlar soni belgilangan chegaradan oshib ketganda."
+    text: |-
+      Quyidagi matnni taxminan [son] so'zgacha qisqartiring.
+      Barcha asosiy faktlarni va dastlabki tartibni saqlang. Avvalo takrorlarni, ortiqcha so'zlarni va kuchsiz misollarni olib tashlang.
+      Keyin nimalarni olib tashlaganingizni ayting.
+
+      <text>
+      [matnni shu yerga qo'ying]
+      </text>
+
+  - id: natural-translation
+    cat: writing
+    title: "Tabiiy tarjima"
+    use: "Tarjimaga o'xshamaydigan tarjima kerak bo'lganda."
+    text: |-
+      Quyidagi matnni [til]dan [til]ga tarjima qiling.
+      So'zma-so'z emas, ma'nosini tarjima qiling: matn shu tilda so'zlashuvchi odam yozgandek o'qilsin.
+      Ismlar, raqamlar va atamalarni aniq saqlang.
+      Agar biror iboraning yaxshi muqobili bo'lmasa, eng ma'qul variantni bering va tanlovingizni izohda tushuntiring.
+
+      <text>
+      [matnni shu yerga qo'ying]
+      </text>
+
+  - id: compare-options
+    cat: research
+    title: "Variantlarni solishtirib, qaror qilish"
+    use: "Vositalar, kurslar, noutbuklar yoki universitetlar orasidan tanlayotganda."
+    text: |-
+      Men mana bulardan birini tanlayapman: [A variant], [B variant], [C variant].
+      Men uchun muhim narsalar, muhimlik tartibida: [mezonlar].
+      Mening vaziyatim: [byudjet, daraja, muddat].
+      Ularni mezonlarim bo'yicha jadvalda solishtiring. Keyin bittasini tavsiya qiling va qanday holatda boshqasini tanlagan bo'lishingizni ayting.
+      Biror faktga ishonchingiz komil bo'lmasa, uni [tekshiring] deb belgilang.
+
+  - id: summarize-source
+    cat: research
+    title: "Maqolani dalillari bilan qisqacha bayon qilish"
+    use: "Uzun maqola yoki ilmiy ishni o'qiyotganda."
+    text: |-
+      <article>
+      [maqolani shu yerga qo'ying]
+      </article>
+
+      Yuqoridagi maqolani qisqacha bayon qiling:
+      1. Asosiy da'vo, bir gapda.
+      2. Eng kuchli uchta dalil, har biri aynan iqtibos bilan.
+      3. Maqola nimani isbotlamaydi yoki qaysi savolni ochiq qoldiradi.
+      Faqat maqolada bor narsadan foydalaning.
+
+  - id: devils-advocate
+    cat: research
+    title: "Pozitsiyamga qarshi dalil keltirish"
+    use: "Bahs, diplom himoyasi yoki katta qaror oldidan."
+    text: |-
+      Mana bir pozitsiya: [uni betaraf ohangda bayon qiling].
+      Mavzuni yaxshi biladigan raqib keltirishi mumkin bo'lgan eng kuchli uchta qarshi dalilni bering.
+      Har biri uchun bu pozitsiyani himoya qiluvchi qanday eng yaxshi javob berishi mumkinligini ayting.
+      Qaysi tomon haq ekanini menga aytmang.
+
+  - id: research-questions
+    cat: research
+    title: "Yaxshi tadqiqot savollarini topish"
+    use: "Kurs ishi yoki diplom ishini boshlayotganda."
+    text: |-
+      Mening soham — [soha], meni esa [keng mavzu] qiziqtiradi.
+      Menda [vaqt] bor va [ma'lumotlar, vositalar, laboratoriya]dan foydalana olaman.
+      Oxiriga yetkazsa bo'ladigan darajada tor beshta tadqiqot savolini taklif qiling.
+      Har biri uchun: nega muhim, qanday ma'lumotlar kerak va asosiy xavf nimada.
+
+  - id: extract-table
+    cat: research
+    title: "Ma'lumotlarni jadvalga yig'ish"
+    use: "Faktlar matn bo'ylab sochilib yotganda."
+    text: |-
+      Quyidagi matndan har bir [element turi: masalan, kompaniya, sana, narx]ni ajratib olib, mana bu ustunli jadvalga joylang: [ustunlar].
+      Har bir element alohida qatorda bo'lsin. Agar qiymat ko'rsatilmagan bo'lsa, "yo'q" deb yozing. Taxmin qilmang.
+
+      <text>
+      [matnni shu yerga qo'ying]
+      </text>
+
+  - id: cv-bullets
+    cat: career
+    title: "Rezyume bandlarini kuchaytirish"
+    use: "Rezyumengizda natijalar emas, vazifalar sanab o'tilgan bo'lsa."
+    text: |-
+      Rezyumemdagi mana bu bandlarni [ko'zlangan lavozim] lavozimi uchun qayta yozing.
+      Har birini kuchli fe'l bilan boshlang va men raqam bergan joylarda natijani raqamlar bilan ko'rsating.
+      Raqam yoki yutuqlarni o'ylab topmang. Natija ko'rsatilmagan bo'lsa, mendan so'rang.
+
+      [bandlarni shu yerga qo'ying]
+
+  - id: mock-interview
+    cat: career
+    title: "Sinov suhbati"
+    use: "Ish yoki amaliyot (stajirovka) suhbatiga tayyorlanayotganda."
+    text: |-
+      [kompaniya turi]dagi [lavozim] lavozimi uchun suhbat o'tkazuvchi bo'ling.
+      Menga bittadan savol bering: avval umumiy, keyin texnik, so'ng o'tmishdagi biror vaziyat haqida.
+      Har bir javobimdan keyin qisqa fikr bildiring: nimasi kuchli edi, nima yetishmadi va buni qanday yaxshiroq aytish mumkin.
+      Oltita savoldan keyin umumiy baho bering.
+
+  - id: cover-letter
+    cat: career
+    title: "Haqiqiy tajribamga asoslangan motivatsion xat"
+    use: "Ishga, amaliyotga yoki stipendiyaga hujjat topshirayotganda."
+    text: |-
+      Mana bu vakansiya uchun 250 so'zdan kam motivatsion xat yozing:
+      <job>
+      [vakansiya tavsifini shu yerga qo'ying]
+      </job>
+
+      Men haqimda:
+      <me>
+      [rezyumengiz yoki asosiy ma'lumotlarni shu yerga qo'ying]
+      </me>
+
+      Faqat men haqimdagi ma'lumotlardagi faktlardan foydalaning. Tajribamdan ikkitasini ularning talablari bilan bog'lang. Ohang sodda va ishonchli bo'lsin, siyqa iboralarsiz.
+
+  - id: learning-roadmap
+    cat: career
+    title: "Ko'nikmaga olib boradigan yo'l xaritasi"
+    use: "Qayerga yetmoqchi ekaningizni bilasiz, lekin yo'lini bilmasangiz."
+    text: |-
+      Men [vaqt] ichida [maqsad: masalan, junior backend dasturchi] bo'lmoqchiman.
+      Hozir bilganlarim: [ko'nikmalar]. Haftasiga [soat] soat ajrata olaman.
+      Oyma-oy yo'l xaritasini tuzing: nimani o'rganish kerak, har oyga bittadan loyiha va keyingi bosqichga tayyor ekanimni qanday bilaman.
+      Bepul manbalarga ustunlik bering. Nimalarni bemalol o'tkazib yuborsam bo'lishini ayting.
+
+  - id: portfolio-project
+    cat: career
+    title: "Portfolio uchun loyiha g'oyalari"
+    use: "Haqiqiy mahoratingizni ko'rsatadigan loyihalar kerak bo'lganda."
+    text: |-
+      Men [soha] yo'nalishidagi [daraja] talabaman va [texnologiyalar]ni bilaman.
+      [lavozim] lavozimiga odam izlayotgan ish beruvchida yaxshi taassurot qoldiradigan beshta portfolio loyihasini taklif qiling.
+      Har biri uchun: qanday muammoni hal qiladi, qaysi ko'nikmalarni ko'rsatadi, necha hafta oladi va eng qiyin qismi nima.
+      Darsliklarda eng ko'p uchraydigan loyihalarni taklif qilmang.
+
+  - id: improve-my-prompt
+    cat: meta
+    title: "Promptimni yaxshilash"
+    use: "Promptingiz kuchsiz natija beryapti va sababini bilmayotganingizda."
+    text: |-
+      Mana men yozgan prompt:
+      <prompt>
+      [promptingizni shu yerga qo'ying]
+      </prompt>
+
+      Nimani istagan edim: [maqsad]. Buning o'rniga nima oldim: [muammo].
+      Promptimda nima tushunarsiz yoki nima yetishmayotganini tushuntiring. Keyin yaxshilangan variantini yozing va nimalarni o'zgartirganingizni sanab bering.
+
+  - id: ask-me-first
+    cat: meta
+    title: "Avval menga savol bering"
+    use: "Vazifa katta va nima deb yozishni bilmayotganingizda."
+    text: |-
+      Menga mana bu ishda yordam berishingizni istayman: [vazifa].
+      Boshlashdan oldin, ishni yaxshi bajarish uchun kerakli savollarni menga bering: bittadan, ko'pi bilan beshta.
+      Keyin nimani tushunganingizni qisqacha ayting va tasdiqlashimni kuting.
+
+  - id: agent-brief
+    cat: meta
+    title: "Vazifani agent uchun topshiriqqa aylantirish"
+    use: "Ko'p bosqichli ishni AI agentga topshirishdan oldin."
+    text: |-
+      Mening xomaki iltimosimni AI agent uchun aniq topshiriqqa aylantiring.
+      Mana bu sarlavhalardan foydalaning: Maqsad, Tayyor degani, Cheklovlar, Bundan oldin mendan so'rang, Yakuniy hisobot.
+      Agar iltimosimda biror sarlavha uchun kerakli ma'lumot yetishmasa, o'ylab topmasdan mendan so'rang.
+
+      Mening iltimosim: [vazifani o'z so'zlaringiz bilan tasvirlang]
+
+  - id: custom-instructions-writer
+    cat: meta
+    title: "Maxsus ko'rsatmalarimni yozish"
+    use: "ChatGPT yoki Claude'ni o'zingizga moslab sozlayotganda."
+    text: |-
+      Maxsus ko'rsatmalarimni (custom instructions) yozish uchun mendan intervyu oling.
+      Quyidagilar haqida so'rang: rolim va darajam, AI'dan nima uchun foydalanishim, javoblar qancha uzunlikda bo'lishini yoqtirishim va AI javoblarida nima g'ashimga tegishi.
+      Bittadan savol bering. Keyin ikkita qisqa bo'lim yozing: "Men haqimda" va "Menga qanday javob berish kerak", har biri 100 so'zdan kam bo'lsin.
+
+  - id: self-critique
+    cat: meta
+    title: "O'z javobingizni tekshiring"
+    use: "Javob muhim va uni yana bir bor ko'zdan kechirtirmoqchi bo'lganingizda."
+    text: |-
+      Oldingi javobingizni tanqidiy ekspert ko'zi bilan ko'rib chiqing.
+      Barcha xatolar, asossiz da'volar va tushirib qoldirilgan jihatlarni sanab bering.
+      Keyin tuzatilgan variantini bering va qaysi qismlarga hali ham ishonchingiz komil emasligini ayting.
+
+  - id: chain-planner
+    cat: agents
+    title: "Ishni zanjir qilib rejalashtirish"
+    use: "Vazifa bitta prompt uchun juda katta bo'lganda."
+    text: |-
+      Men mana bu ishni qilmoqchiman: [katta vazifa].
+      Uni to'rt-olti qadamga bo'ling: har bir qadamning bitta aniq natijasi bo'lsin va u oldingi qadam natijasidan foydalansin.
+      Rejani jadval ko'rinishida ko'rsating: qadam, kirish, natija, uni qanday tekshiraman.
+      Keyin faqat 1-qadamni bajaring va javobimni kuting.
+
+  - id: spec-interview
+    cat: agents
+    title: "Mendan so'rab, spetsifikatsiya yozish"
+    use: "Agent ilova, skript yoki sayt yasashidan oldin."
+    text: |-
+      Men mana buni yasamoqchiman: [g'oya]. Hozircha kod yozmang.
+      Talablar aniq bo'lguncha menga bittadan savol bering, ko'pi bilan sakkizta.
+      Keyin bir sahifali spetsifikatsiya yozing: maqsad, foydalanuvchilar, funksiyalar, doiradan tashqaridagi narsalar, ma'lumotlar va ishlayotganini isbotlaydigan beshta tekshiruv.
+      Yasashni boshlashdan oldin ma'qullashimni kuting.
+
+  - id: progress-notes
+    cat: agents
+    title: "Ish jarayonini qayd qilib borish"
+    use: "Ish boshqa sessiyada davom etadigan bo'lganda."
+    text: |-
+      Bu ish keyingi sessiyalarda davom etadi.
+      progress.md faylini yarating va uni yangilab boring: bajarildi, navbatda, qarorlar va sabablari, ochiq muammolar.
+      To'xtashdan oldin faylni shunday yangilangki, bu chatdan mutlaqo bexabar odam ham ishni shu fayl bo'yicha davom ettira olsin.
+      Sessiya boshida avval uni o'qing va qayerda turganimizni ayting.
+
+  - id: hypothesis-research
+    cat: agents
+    title: "Farazlar bilan tadqiq qilish"
+    use: "Birinchi topilgan emas, ishonchli javob kerak bo'lganda."
+    text: |-
+      Mana bu savolni tadqiq qiling: [savol].
+      Bir nechta ehtimoliy javobni sanab bering. Har biri uchun tasdiqlovchi dalillarni, qarshi dalillarni va ishonch darajangizni (past, o'rta, yuqori) ko'rsating.
+      Asosiy faktlarni kamida ikkita mustaqil manbada tekshiring va havolalarni bering.
+      Oxirida nima hali noma'lumligini yozing.
+
+  - id: daily-briefing
+    cat: agents
+    title: "Kundalik brifing"
+    use: "Sohani hamma narsani o'qimasdan kuzatib borish uchun."
+    text: |-
+      [manbalar] asosida [mavzular] bo'yicha so'nggi 24 soatni qamraydigan brifingimni tayyorlang.
+      Ko'pi bilan beshta band. Har biri uchun: bir gapli xulosa, [sizning rolingiz] uchun nega muhimligi va havola.
+      Muhim hech narsa bo'lmagan bo'lsa, shuni ayting va to'xtang. Ro'yxatni sun'iy to'ldirmang.
+
+  - id: scenario-model
+    cat: agents
+    title: "Uch ssenariyli model"
+    use: "Qaror raqamlarga bog'liq bo'lganda."
+    text: |-
+      Mening raqamlarim: [ko'rsatkichlar yoki ilova qilingan fayl].
+      Savol: [nimani bilmoqchisiz].
+      [davr] uchun kutilayotgan, yaxshiroq va yomonroq ssenariylarni tuzing.
+      Har bir taxminni alohida jadvalga joylang.
+      Kutilayotgan holat uchun hisob-kitobni ko'rsating va qaysi taxmin natijani eng ko'p o'zgartirishini ayting.
+
+  - id: slides-storyline
+    cat: agents
+    title: "Taqdimot uchun hikoya chizig'i"
+    use: "Tadqiqot yoki qaydlarni slaydlarga aylantirishda."
+    text: |-
+      <sources>
+      [materialni shu yerga qo'ying]
+      </sources>
+
+      Auditoriya: [kim], vaqt: [daqiqa].
+      Avval eslab qolinishi kerak bo'lgan bitta asosiy fikrni taklif qiling. Keyin [son] slayddan iborat hikoya chizig'ini yozing, har bir sarlavha fikrni ifodalaydigan to'liq gap bo'lsin.
+      Ma'qullashimni kuting, so'ng har bir slayd uchun bandlar, manbalar va ma'ruzachi qaydlarini yozing.
+
+  - id: voice-guide
+    cat: agents
+    title: "Ovoz qo'llanmamni tuzish"
+    use: "Bir uslubda ko'p matn tayyorlashdan oldin."
+    text: |-
+      <samples>
+      [haqiqiy matnlaringizdan 3–5 tasini shu yerga qo'ying]
+      </samples>
+
+      Shu namunalarni o'rganib chiqing va ko'pi bilan o'nta qoidadan iborat ovoz qo'llanmasini yozing: gap uzunligi, o'ziga xos so'zlar, boshlanishlar, yakunlar va men hech qachon nima qilmasligim.
+      Har bir qoida uchun namunalardan bitta misol keltiring. Keyin nimani tuzatish kerakligini mendan so'rang.
+
+  - id: agent-safety-rules
+    cat: agents
+    title: "Agent uchun xavfsizlik qoidalari"
+    use: "Agentga fayllaringiz yoki akkauntlaringizga kirish huquqini berayotganda."
+    text: |-
+      Bu vazifa uchun qoidalar:
+      Erkin bajarishingiz mumkin: [fayllarni o'qish, qoralamalar yaratish, testlarni ishga tushirish].
+      Bundan oldin mendan so'rang: [o'chirish, yuborish, to'lash, e'lon qilish, o'rnatish].
+      Faqat men so'ragan ishni bajaring. Boshqa muammolarni payqasangiz, ularni oxirida sanab bering.
+      Biror narsa amalga oshmasa, aynan nima bo'lganini menga ayting. Buni yashirmang va indamasdan aylanib o'tmang.
+      Yakunda kiritgan har bir o'zgarishingiz ro'yxatini bering.
+
+  - id: real-fix
+    cat: agents
+    title: "Testni emas, sababni tuzatish"
+    use: "Dasturlash agenti o'tmayotgan testlarni tuzatayotganda."
+    text: |-
+      [fayl]dagi testlar o'tmayapti.
+      Javob berishdan oldin kodni va testlarni o'qib chiqing. Ochib ko'rmagan kodingiz haqida taxmin qilmang.
+      Haqiqiy sababni toping va uni faqat testda tekshirilganlari uchun emas, barcha to'g'ri kirish ma'lumotlari uchun tuzating.
+      Testlarni tahrirlamang. Agar biror test noto'g'ri ko'rinsa, to'xtang va tushuntiring.
+      Barcha testlarni to'liq ishga tushiring va natijani aynan o'zidek xabar qiling.
+
+  - id: system-prompt-builder
+    cat: agents
+    title: "Tizim promptini tuzish"
+    use: "O'z botingiz yoki yordamchingizni yasayotganda."
+    text: |-
+      [botning vazifasi] uchun tizim promptini yozishimga yordam bering.
+      Mendan quyidagilar haqida so'rang: foydalanuvchilar, til va ohang, bot nimalarni bilishi shart, nimani hech qachon qilmasligi kerak va nega, javobni bilmaganda nima qilishi kerak.
+      Keyin tizim promptini yozing: unda rol, <knowledge> bo'limi, sabablari ko'rsatilgan qoidalar va javob formati bo'lsin.
+      Oxirida menga o'nta sinov savolini bering, shulardan uchtasi g'arazli yoki mavzuga aloqasiz bo'lsin.
+
+checklist:
+  - "Kim ekanimni va nimani allaqachon bilishimni aytdimmi?"
+  - "Vazifa aniqmi: maqsad, o'quvchi, hajm va format?"
+  - "Faqat nima kerakligini emas, nima uchun kerakligini ham tushuntirdimmi?"
+  - "Bir-ikkita misol yordam berarmidi?"
+  - "Qo'yilgan material ko'rsatmalardan teglar bilan ajratilganmi?"
+  - "Qiyin masalalarda: qadam-baqadam mulohaza va o'zini tekshirishni so'radimmi?"
+  - "Ma'qullash o'rniga tanqid so'radimmi?"
+  - "Faktlar, raqamlar va manbalarni o'zim tekshiramanmi?"

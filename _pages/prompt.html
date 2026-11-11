@@ -1,0 +1,336 @@
+---
+layout: single
+permalink: /prompt/
+title: "Prompt Lab"
+excerpt: "Prompt yozishni o'rganish uchun bepul qisqa kurs va tayyor promptlar kutubxonasi — o'zbek, rus va ingliz tillarida."
+author_profile: false
+classes: wide
+---
+{%- comment -%}
+  Prompt Lab: one page, three languages.
+  Content lives in _data/promptlab/{uz,ru,en}.yml (same keys in each file).
+  Every language is rendered into the page; CSS shows the one named by
+  .pl[data-lang], and the script at the bottom switches it.
+{%- endcomment -%}
+{%- assign langs = "uz,ru,en" | split: "," -%}
+
+<div class="pl" data-lang="uz">
+  <div class="pl-langs" role="group" aria-label="Til / Язык / Language">
+    <button type="button" data-set-lang="uz" aria-pressed="true">O'zbekcha</button>
+    <button type="button" data-set-lang="ru" aria-pressed="false">Русский</button>
+    <button type="button" data-set-lang="en" aria-pressed="false">English</button>
+  </div>
+
+  {% for l in langs %}
+  {%- assign d = site.data.promptlab[l] -%}
+  {% if d %}
+  <div class="pl-lang" data-lang="{{ l }}" lang="{{ l }}">
+    <p class="pl-tagline">{{ d.ui.tagline }}</p>
+    <p class="pl-author">{{ d.ui.author }}</p>
+
+    <nav class="pl-nav">
+      <a href="#{{ l }}-course">{{ d.ui.nav_course }}</a>
+      <a href="#{{ l }}-library">{{ d.ui.nav_library }}</a>
+      <a href="#{{ l }}-checklist">{{ d.ui.nav_checklist }}</a>
+    </nav>
+
+    <h2 id="{{ l }}-course">{{ d.ui.course_title }}</h2>
+    <p>{{ d.ui.course_intro }}</p>
+    <p class="pl-progress"><span data-progress>0</span> / {{ d.lessons | size }} {{ d.ui.progress }}</p>
+
+    {% assign current_module = "" %}
+    {% for lesson in d.lessons %}
+      {% if lesson.module != current_module %}
+        {% assign current_module = lesson.module %}
+        <h3 class="pl-module">{{ d.modules[lesson.module] }}</h3>
+      {% endif %}
+      <details class="pl-lesson" data-lesson="{{ lesson.id }}">
+        <summary>
+          <span class="pl-num">{{ forloop.index }}</span>
+          <span class="pl-lesson-title">{{ lesson.title }}</span>
+          <span class="pl-done" hidden>✓ {{ d.ui.done }}</span>
+        </summary>
+        <div class="pl-body">
+          <h4>{{ d.ui.idea }}</h4>
+          <p>{{ lesson.idea | escape }}</p>
+
+          <h4 class="pl-weak">{{ d.ui.weak }}</h4>
+          <pre class="pl-prompt pl-prompt--weak">{{ lesson.weak | escape }}</pre>
+
+          <h4 class="pl-better">{{ d.ui.better }}</h4>
+          <div class="pl-copybox">
+            <button type="button" class="pl-copy" data-copy data-label="{{ d.ui.copy }}" data-done="{{ d.ui.copied }}">{{ d.ui.copy }}</button>
+            <pre class="pl-prompt">{{ lesson.better | escape }}</pre>
+          </div>
+
+          <h4>{{ d.ui.why }}</h4>
+          <p>{{ lesson.why | escape }}</p>
+
+          <div class="pl-check" data-answer="{{ lesson.check.answer }}" data-correct="{{ d.ui.correct }}" data-wrong="{{ d.ui.wrong }}">
+            <h4>{{ d.ui.check }}</h4>
+            <p>{{ lesson.check.q | escape }}</p>
+            {% for option in lesson.check.options %}
+              <button type="button" class="pl-option" data-option="{{ forloop.index0 }}">{{ option | escape }}</button>
+            {% endfor %}
+            <p class="pl-explain" hidden><strong data-verdict></strong> {{ lesson.check.explain | escape }}</p>
+          </div>
+
+          <h4>{{ d.ui.keep }}</h4>
+          <div class="pl-copybox">
+            <button type="button" class="pl-copy" data-copy data-label="{{ d.ui.copy }}" data-done="{{ d.ui.copied }}">{{ d.ui.copy }}</button>
+            <pre class="pl-prompt">{{ lesson.keep | escape }}</pre>
+          </div>
+        </div>
+      </details>
+    {% endfor %}
+
+    <h2 id="{{ l }}-library">{{ d.ui.library_title }}</h2>
+    <p>{{ d.ui.library_intro }}</p>
+    <div class="pl-filters">
+      <input type="search" class="pl-search" placeholder="{{ d.ui.search }}" aria-label="{{ d.ui.search }}">
+      <div class="pl-cats" role="group">
+        <button type="button" data-cat="all" aria-pressed="true">{{ d.ui.all }}</button>
+        {% for cat in d.cats %}
+          <button type="button" data-cat="{{ cat[0] }}" aria-pressed="false">{{ cat[1] }}</button>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="pl-cards">
+      {% for p in d.prompts %}
+        <article class="pl-card" data-cat="{{ p.cat }}">
+          <span class="pl-tag">{{ d.cats[p.cat] }}</span>
+          <h3>{{ p.title | escape }}</h3>
+          <p class="pl-use"><strong>{{ d.ui.when }}:</strong> {{ p.use | escape }}</p>
+          <div class="pl-copybox">
+            <button type="button" class="pl-copy" data-copy data-label="{{ d.ui.copy }}" data-done="{{ d.ui.copied }}">{{ d.ui.copy }}</button>
+            <pre class="pl-prompt">{{ p.text | escape }}</pre>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+    <p class="pl-empty" hidden>{{ d.ui.empty }}</p>
+
+    <h2 id="{{ l }}-checklist">{{ d.ui.checklist_title }}</h2>
+    <p>{{ d.ui.checklist_intro }}</p>
+    <ul class="pl-checklist">
+      {% for item in d.checklist %}
+        <li><label><input type="checkbox"> {{ item | escape }}</label></li>
+      {% endfor %}
+    </ul>
+
+    <h2>{{ d.ui.sources_title }}</h2>
+    <p>{{ d.ui.sources_intro }}</p>
+    <ul>
+      <li><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview">Anthropic — Prompt engineering overview</a></li>
+      <li><a href="https://github.com/anthropics/prompt-eng-interactive-tutorial">Anthropic — Interactive prompt engineering tutorial</a></li>
+      <li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI — Prompt engineering guide</a></li>
+    </ul>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<style>
+  .pl-lang { display: none; }
+  .pl[data-lang="uz"] .pl-lang[data-lang="uz"],
+  .pl[data-lang="ru"] .pl-lang[data-lang="ru"],
+  .pl[data-lang="en"] .pl-lang[data-lang="en"] { display: block; }
+
+  .pl button { font: inherit; cursor: pointer; }
+
+  .pl-langs, .pl-cats { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .pl-langs { margin-bottom: 1.25rem; }
+  .pl-langs button, .pl-cats button {
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+  .pl-langs button:hover, .pl-cats button:hover { background: var(--surface-hover); }
+  .pl-langs button[aria-pressed="true"], .pl-cats button[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  .pl-tagline { font-size: 1.15rem; color: var(--text); margin-bottom: 0.25rem; }
+  .pl-author { color: var(--text-faint); font-size: 0.85rem; }
+  .pl-nav { display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 1rem 0 0; font-weight: 600; }
+  .pl-progress { color: var(--text-muted); font-size: 0.85rem; }
+  .pl h3.pl-module { margin-top: 1.75rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); }
+
+  .pl-lesson {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-elevated);
+    margin: 0.5rem 0;
+  }
+  .pl-lesson > summary {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.8rem 1rem; cursor: pointer; font-weight: 600; list-style: none;
+  }
+  .pl-lesson > summary::-webkit-details-marker { display: none; }
+  .pl-lesson[open] > summary { border-bottom: 1px solid var(--border); }
+  .pl-num {
+    flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--accent-soft); color: var(--accent); font-size: 0.8rem;
+  }
+  .pl-lesson-title { flex: 1; }
+  .pl-done { color: var(--success); font-size: 0.8rem; font-weight: 500; white-space: nowrap; }
+  .pl-body { padding: 0.25rem 1rem 1rem; }
+  .pl-body h4, .pl-check h4 { margin: 1.1rem 0 0.35rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+  .pl-body h4.pl-weak { color: var(--danger); }
+  .pl-body h4.pl-better { color: var(--success); }
+  .pl-body p { margin: 0 0 0.5rem; }
+
+  .pl pre.pl-prompt {
+    margin: 0; padding: 0.85rem 1rem;
+    background: var(--bg); color: var(--text);
+    border: 1px solid var(--border); border-left: 3px solid var(--success);
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem; line-height: 1.55;
+    white-space: pre-wrap; overflow-wrap: anywhere;
+  }
+  .pl pre.pl-prompt--weak { border-left-color: var(--danger); color: var(--text-muted); }
+  .pl-copybox { position: relative; }
+  .pl-copybox pre.pl-prompt { padding-top: 2.2rem; }
+  .pl-copy {
+    position: absolute; top: 0.4rem; right: 0.4rem;
+    padding: 0.15rem 0.6rem; font-size: 0.75rem;
+    border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+    background: var(--bg-elevated); color: var(--text-muted);
+  }
+  .pl-copy:hover { color: var(--accent); border-color: var(--accent); }
+
+  .pl-check { margin-top: 1.1rem; padding: 0.1rem 1rem 0.8rem; border: 1px dashed var(--border-strong); border-radius: var(--radius-sm); }
+  .pl-option {
+    display: block; width: 100%; text-align: left;
+    margin: 0.35rem 0; padding: 0.55rem 0.8rem;
+    border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+    background: var(--bg); color: var(--text); font-size: 0.9rem;
+  }
+  .pl-option:hover { background: var(--surface-hover); }
+  .pl-option.is-right { border-color: var(--success); }
+  .pl-option.is-wrong { border-color: var(--danger); }
+  .pl-explain { margin-top: 0.6rem !important; font-size: 0.9rem; }
+
+  .pl-filters { display: grid; gap: 0.75rem; margin: 1rem 0; }
+  .pl-search {
+    width: 100%; max-width: 28rem; padding: 0.5rem 0.8rem;
+    border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+    background: var(--bg); color: var(--text); font: inherit;
+  }
+  .pl-cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
+  .pl-card { padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elevated); }
+  .pl-card h3 { margin: 0.4rem 0 0.3rem; font-size: 1.05rem; }
+  .pl-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+  .pl-use { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+  .pl-empty { color: var(--text-muted); }
+
+  .pl-checklist { list-style: none; padding-left: 0; }
+  .pl-checklist li { margin: 0.4rem 0; }
+  .pl-checklist input { margin-right: 0.5rem; }
+</style>
+
+<script>
+  (function () {
+    "use strict";
+    var root = document.querySelector(".pl");
+    if (!root) return;
+
+    function store(key, value) {
+      try {
+        if (value === undefined) return localStorage.getItem(key);
+        localStorage.setItem(key, value);
+      } catch (e) { return null; }
+    }
+    function each(selector, fn, scope) {
+      Array.prototype.forEach.call((scope || root).querySelectorAll(selector), fn);
+    }
+
+    /* Language: ?lang=ru in the URL wins, then the stored choice, then Uzbek. */
+    function setLang(lang) {
+      if (!root.querySelector('.pl-lang[data-lang="' + lang + '"]')) return;
+      root.setAttribute("data-lang", lang);
+      store("pl-lang", lang);
+      each("[data-set-lang]", function (b) {
+        b.setAttribute("aria-pressed", String(b.getAttribute("data-set-lang") === lang));
+      });
+    }
+    var fromUrl = /[?&]lang=(uz|ru|en)/.exec(location.search);
+    setLang((fromUrl && fromUrl[1]) || store("pl-lang") || "uz");
+    each("[data-set-lang]", function (b) {
+      b.addEventListener("click", function () { setLang(b.getAttribute("data-set-lang")); });
+    });
+
+    /* Copy buttons */
+    each("[data-copy]", function (btn) {
+      btn.addEventListener("click", function () {
+        var text = btn.parentNode.querySelector("pre").textContent;
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = btn.getAttribute("data-done");
+          setTimeout(function () { btn.textContent = btn.getAttribute("data-label"); }, 1500);
+        });
+      });
+    });
+
+    /* Lesson progress: a lesson is done once its quick check is answered
+       correctly. Shared across languages because lesson ids are the same. */
+    var done = (store("pl-done") || "").split(",").filter(Boolean);
+    function showProgress() {
+      each("[data-lesson]", function (el) {
+        el.querySelector(".pl-done").hidden = done.indexOf(el.getAttribute("data-lesson")) === -1;
+      });
+      each("[data-progress]", function (el) { el.textContent = done.length; });
+    }
+    showProgress();
+
+    each(".pl-check", function (check) {
+      each(".pl-option", function (option) {
+        option.addEventListener("click", function () {
+          var right = option.getAttribute("data-option") === check.getAttribute("data-answer");
+          each(".pl-option", function (o) { o.classList.remove("is-right", "is-wrong"); }, check);
+          option.classList.add(right ? "is-right" : "is-wrong");
+          var explain = check.querySelector(".pl-explain");
+          explain.querySelector("[data-verdict]").textContent =
+            check.getAttribute(right ? "data-correct" : "data-wrong");
+          explain.hidden = false;
+          var id = check.closest("[data-lesson]").getAttribute("data-lesson");
+          if (right && done.indexOf(id) === -1) {
+            done.push(id);
+            store("pl-done", done.join(","));
+            showProgress();
+          }
+        });
+      }, check);
+    });
+
+    /* Library search and category filter, per language block */
+    each(".pl-lang", function (block) {
+      var search = block.querySelector(".pl-search");
+      var cat = "all";
+      function filter() {
+        var q = search.value.trim().toLowerCase();
+        var shown = 0;
+        each(".pl-card", function (card) {
+          var ok = (cat === "all" || card.getAttribute("data-cat") === cat) &&
+            (!q || card.textContent.toLowerCase().indexOf(q) !== -1);
+          card.hidden = !ok;
+          if (ok) shown++;
+        }, block);
+        block.querySelector(".pl-empty").hidden = shown > 0;
+      }
+      search.addEventListener("input", filter);
+      each(".pl-cats button", function (b) {
+        b.addEventListener("click", function () {
+          cat = b.getAttribute("data-cat");
+          each(".pl-cats button", function (o) { o.setAttribute("aria-pressed", String(o === b)); }, block);
+          filter();
+        });
+      }, block);
+    });
+  })();
+</script>
