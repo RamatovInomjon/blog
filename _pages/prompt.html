@@ -32,6 +32,7 @@ classes: wide
       <a href="#{{ l }}-course">{{ d.ui.nav_course }}</a>
       <a href="#{{ l }}-library">{{ d.ui.nav_library }}</a>
       <a href="#{{ l }}-checklist">{{ d.ui.nav_checklist }}</a>
+      <a href="#{{ l }}-certificate">{{ d.ui.nav_cert }}</a>
     </nav>
 
     <h2 id="{{ l }}-course">{{ d.ui.course_title }}</h2>
@@ -117,6 +118,25 @@ classes: wide
         <li><label><input type="checkbox"> {{ item | escape }}</label></li>
       {% endfor %}
     </ul>
+
+    <h2 id="{{ l }}-certificate">{{ d.ui.cert_title }}</h2>
+    <div class="pl-cert"
+         data-heading="{{ d.ui.cert_heading }}" data-line1="{{ d.ui.cert_line1 }}" data-line2="{{ d.ui.cert_line2 }}"
+         data-lessons="{{ d.lessons | size }} {{ d.ui.cert_lessons }}"
+         data-director-name="{{ d.ui.cert_director_name }}" data-director-title="{{ d.ui.cert_director_title }}">
+      <p class="pl-cert-locked">🔒 {{ d.ui.cert_locked }}</p>
+      <div class="pl-cert-open" hidden>
+        <p>{{ d.ui.cert_ready }}</p>
+        <form class="pl-cert-form">
+          <input type="text" class="pl-search pl-cert-name" maxlength="60" required placeholder="{{ d.ui.cert_name }}" aria-label="{{ d.ui.cert_name }}">
+          <button type="submit" class="pl-cert-btn">{{ d.ui.cert_create }}</button>
+        </form>
+        <div class="pl-cert-result" hidden>
+          <canvas width="1600" height="1130"></canvas>
+          <p><a class="pl-cert-btn pl-cert-download" download="prompt-lab-certificate.png">{{ d.ui.cert_download }}</a></p>
+        </div>
+      </div>
+    </div>
 
     <h2>{{ d.ui.sources_title }}</h2>
     <p>{{ d.ui.sources_intro }}</p>
@@ -233,6 +253,17 @@ classes: wide
   .pl-checklist { list-style: none; padding-left: 0; }
   .pl-checklist li { margin: 0.4rem 0; }
   .pl-checklist input { margin-right: 0.5rem; }
+
+  .pl-cert { padding: 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elevated); }
+  .pl-cert-locked { margin: 0; color: var(--text-muted); }
+  .pl-cert-form { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .pl-cert-btn, a.pl-cert-btn {
+    display: inline-block; padding: 0.5rem 1rem;
+    border: 0; border-radius: var(--radius-sm);
+    background: var(--accent); color: var(--accent-contrast);
+    font-weight: 600; text-decoration: none;
+  }
+  .pl-cert-result canvas { display: block; width: 100%; height: auto; margin: 1rem 0; border: 1px solid var(--border); border-radius: var(--radius-sm); }
 </style>
 
 <script>
@@ -285,6 +316,14 @@ classes: wide
         el.querySelector(".pl-done").hidden = done.indexOf(el.getAttribute("data-lesson")) === -1;
       });
       each("[data-progress]", function (el) { el.textContent = done.length; });
+      /* The certificate unlocks when every lesson on the page is done. */
+      each(".pl-lang", function (block) {
+        var all = Array.prototype.every.call(block.querySelectorAll("[data-lesson]"), function (el) {
+          return done.indexOf(el.getAttribute("data-lesson")) !== -1;
+        });
+        block.querySelector(".pl-cert-locked").hidden = all;
+        block.querySelector(".pl-cert-open").hidden = !all;
+      });
     }
     showProgress();
 
@@ -306,6 +345,51 @@ classes: wide
           }
         });
       }, check);
+    });
+
+    /* Certificate: drawn on a canvas in the browser, so it can be saved as an
+       image. Colours are fixed (not theme tokens) so it looks the same for
+       everyone. */
+    function drawCertificate(canvas, cert, name) {
+      var c = canvas.getContext("2d"), w = canvas.width, h = canvas.height;
+      var sans = '"Inter", "Helvetica Neue", Arial, sans-serif';
+      function text(str, y, font, color) {
+        c.font = font; c.fillStyle = color; c.fillText(str, w / 2, y, w - 240);
+      }
+      c.fillStyle = "#ffffff"; c.fillRect(0, 0, w, h);
+      c.strokeStyle = "#4f46e5"; c.lineWidth = 10; c.strokeRect(40, 40, w - 80, h - 80);
+      c.lineWidth = 2; c.strokeRect(62, 62, w - 124, h - 124);
+      c.textAlign = "center";
+      text("PROMPT LAB", 200, "600 34px " + sans, "#4f46e5");
+      text(cert.getAttribute("data-heading"), 290, "700 58px " + sans, "#1f2430");
+      text(cert.getAttribute("data-line1"), 410, "400 32px " + sans, "#5c6575");
+      text(name, 530, "700 84px " + sans, "#1f2430");
+      c.strokeStyle = "#cdd2dc"; c.beginPath(); c.moveTo(400, 570); c.lineTo(w - 400, 570); c.stroke();
+      text(cert.getAttribute("data-line2"), 650, "400 32px " + sans, "#5c6575");
+      text(cert.getAttribute("data-lessons") + " · inomjonramatov.uz/prompt", 710, "400 26px " + sans, "#8b94a3");
+      var d = new Date();
+      var date = ("0" + d.getDate()).slice(-2) + "." + ("0" + (d.getMonth() + 1)).slice(-2) + "." + d.getFullYear();
+      text(cert.getAttribute("data-director-name"), 900, "600 40px " + sans, "#1f2430");
+      c.beginPath(); c.moveTo(w / 2 - 220, 925); c.lineTo(w / 2 + 220, 925); c.stroke();
+      text(cert.getAttribute("data-director-title"), 965, "400 26px " + sans, "#5c6575");
+      text(date, 1020, "400 24px " + sans, "#8b94a3");
+    }
+    each(".pl-cert", function (cert) {
+      var input = cert.querySelector(".pl-cert-name");
+      input.value = store("pl-name") || "";
+      cert.querySelector(".pl-cert-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = input.value.trim();
+        if (!name) return;
+        store("pl-name", name);
+        var canvas = cert.querySelector("canvas");
+        var ready = document.fonts && document.fonts.load ? document.fonts.load('700 84px "Inter"', name) : Promise.resolve();
+        ready.then(function () {
+          drawCertificate(canvas, cert, name);
+          cert.querySelector(".pl-cert-download").href = canvas.toDataURL("image/png");
+          cert.querySelector(".pl-cert-result").hidden = false;
+        });
+      });
     });
 
     /* Library search and category filter, per language block */
